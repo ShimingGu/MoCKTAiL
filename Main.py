@@ -7,8 +7,6 @@ import h5py
 import cython
 import gc
 import sys
-sys.path.append('./include')
-from support_functions import Mag_Choice
 
 #
 # Default Parameter Settings
