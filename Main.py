@@ -17,25 +17,26 @@ GALFORM_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/GALF.h5"
 Alt_GALFORM_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/Altg.h5"
 picsave_path = b"./pics"
 catalogue_cache_path = b"/gpfs/data/ddsm49/GALFORM/Cache2/"
-
 # PLEASE ADD THE PATH AFTER THE LETTER b
 
 Mag_min = 9.5
 Mag_max = 19.5
 Mag_Sep = 0.5 
+# The choice of the magnitude limit and the width of the each magnitude range
 
 Abs_App = 'App'
+# The choice of using apparent magnitude or the absolute magnitude
 
 Z_min = 0
 Z_max = 0.50
 Z_Sep = 0.005
+# The choice of the redshift limit and the width of the each redshift range
 
 #
-# AUTOMATIC MODES (NOT YET WRITTEN)
+# AUTOMATIC MODES
 #
 
-Mode = 0
-
+Automatic_Mode = 0
 # 0 = NO AUTOMATIC MODES
 # 1 = CHECK THE NEW REDSHIFT DISTRIBUTION DIRECTLY FROM OLD GALFORM CATALOGUE
 # 2 = CHECK THE NEW COLOUR DISTRIBUTION DIRECTLY FROM THE OLD GALFORM CATALOGUE
@@ -53,9 +54,10 @@ Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
 Catalogue_Separation = 2
+# Separate the catalogues in order to make the code parallel
 # 0 = "REUSE", 1 = "REDO", 2 = "DELETE AND REDO"
 
-Fenli = 'Magnitude'
+Separation_Mode = 'Magnitude'
 
 #
 # PLOT SETTINGS
@@ -71,6 +73,7 @@ k_correction = 1
 Fractions = 1
 
 Concatenate_Catalogues = 1
+# Plot the Luminosity Functions only or apply the correction to a new catalogue 
 
 Color_Distribution = 0
 PLOT_OLD_GALFORM = 1
@@ -105,6 +108,8 @@ if Abs_App == 'App':
 if Abs_App == 'Apparent':
     Abs_App = 1
 
+Fenli = Separation_Mode
+    
 if Fenli == 'Redshift':
     Fenli = 0
 if Fenli == 'redshift':
@@ -184,7 +189,6 @@ from Catalo import Separa,Conca
 from NofZ import NofZmain
 from Lumino import LFmain
 #from Colodis import CDmain
-#from FUNCS import EucProd,Sep,nofzMaine,LfMaine,Colodis
 
 def Func0(Har):
     for i in pool.map(Separa,Har):
@@ -197,52 +201,18 @@ def Func1(Har):
             p = 0
     return 0
 
-def Func1(Har):
+def Func2(Har):
     if Fenli < 0.5 and Interpolate_LF > 0:
-        for i in pool.map(NofZmain,Har):
+        for i in pool.map(LFmain,Har):
             p = 0
     return 0
 
-Func0(Har)
-Func1(Har)
-Func2(Har)
-
-
-#Separ(Har)
-
 '''
-Nota = np.array([FEN,Separation,Use_Auld_GALFORM_Catalogue,Abs_App,Mag_limit_for_LF,LFI,k_correction])
-
-np.save('Sep.npy',Nota)
-if entropy > 1.5:
-    p = 0
-    for q in pool.map(Sep,Har):
-        p = 0
-
-if Separation > 0.5:
-    for pu in pool.map(nofzMaine,Har):
-        print (pu)
-
-elif Interpolate_LF > 0.5:
-    for sh in pool.map(LfMaine,Har):
-        print (sh)
-
-
-
-if Concatenate_Catalogues > 0.5:
-    x_low = Har[0];x_up = x_low+Z_Sep
-    x_low = np.float(x_low);x_up = np.float(x_up)
-    Q0 = np.load('/gpfs/data/ddsm49/GALFORM/Cache1/ZSep/QuoGal_'+str(x_low)+'_'+str(x_up)+'.npy')
-    for i in range(1,len(Har)):
-        x_low = Har[i];x_up = x_low+Z_Sep
-        x_low = np.float(x_low);x_up = np.float(x_up)
-        Q1 = np.load('/gpfs/data/ddsm49/GALFORM/Cache1/ZSep/QuoGal_'+str(x_low)+'_'+str(x_up)+'.npy')
-        # FasGal
-        Q0 = np.concatenate((Q0,Q1))
-
-    np.save('/gpfs/data/ddsm49/GALFORM/hamcatalogues/RusGal.npy',Q0)
-
-if Color_Distribution > 0.5:
-    for qgru in pool.map(Colodis,Har):
-        print (qgru)
+if Automatic_Mode == 1:
+    Conf = h5py.File('Config.h5','w')
+    Conf['ZorM'] = 1
+    Func0(Har)
+    Func2(Har)
+    Conca(Har)
 '''
+
