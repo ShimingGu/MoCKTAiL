@@ -1,0 +1,10 @@
+# MoCKTAiL
+Semi-Analytical Mock Catalogue Clustering Properties Corrector and Examiner
+
+This tool is designed uniquely for GALFORM-based semi-analytical Mock Catalogues and its correction based on the Millenium-XXL. And it can correct the data from GALFORM catalogue based on the statistical properties of Millenium-XXL. This code is written in python3 and also supports python2.
+
+All configurations can be set in the Main.py, with proper instruction of how to write the configuration.
+ 
+Different Modes can be chosen to fulfil a full round of, for example, the entire process of correcting the Luminosity Function to point out the difference of the angular clustering with plots.
+ 
+(More to update)
