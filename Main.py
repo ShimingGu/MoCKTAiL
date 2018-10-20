@@ -31,6 +31,11 @@ Abs_Mag_max = -5.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
+Mag_min = 9.5
+Mag_max = 19.5
+Mag_Sep = 0.5 
+# The choice of the magnitude limit and the width of the each magnitude range
+
 Abs_App = 'App'
 # The choice of using apparent magnitude or the absolute magnitude
 
@@ -229,7 +234,6 @@ def Func2(Har):
         for i in pool.map(LFmain,Har):
             p = 0
     return 0
-
 
 if Automatic_Mode == 1:
     Conf = h5py.File('Config.h5','w')
