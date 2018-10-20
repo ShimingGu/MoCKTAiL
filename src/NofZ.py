@@ -83,7 +83,7 @@ def NofZmain(y):
     plt.legend()
     plt.ylabel('dn/dz')
     plt.xlabel('z')
-    plt.title('dn/dz of MXXL and GALFORM')
+    plt.title('dn/dz of MXXL and GALFORM from mag range '+str(x_low)+'_to_'+str(x_up))
     plt.savefig(picpath+'dNdZ_app_mag_from_'+str(x_low)+'_to_'+str(x_up)+'.png',dpi = 340)
     plt.close('all')
     

@@ -88,6 +88,48 @@ def Separa(y):
         del bds;gc.collect()
         return 0
 
-def Conca(x):
+
+def Conca_Pica(Sp,Cache,ZM,xl,xu):
+    rusgal0 = str(Cache+ZM+'/'+'RusGal_'+str(xl[0])+'_'+str(xu[0])+'.h5')
+    altgal = str(Sp)
+    Qata0 = h5py.File(rusgal0,'r')
+    Nada = h5py.File(altgal,'w')
+    for Yaoshi in Qata0.keys():
+        Cada0 = Qata0[str(Yaoshi)]
+        for i in range(1,len(xl)):
+            x_l = xl[i];x_u = xu[i]
+            Qata = h5py.File(Cache+ZM+'/'+'RusGal_'+str(xl[0])+'_'+str(xu[0])+'.h5','r')
+            Cada = Qata[str(Yaoshi)]
+            Cada0 = np.concatenate((Cada0,Cada))
+            del Cada,gc.collect()
+            Qata.close()
+        Nada[str(Yaoshi)] = Cada0
+    Qata0.close()
+    Nada.close()
     return 0
+
+
+def Conca(x):
+    Conf = h5py.File('./Config.h5','r')
+    x_sep = np.array(Conf['Separation'])[()]
+    ZorM = np.array(Conf['ZorM'])[()]
+    Abs_App = np.array(Conf['Abs_App'])[()]
+    Sp = Conf.attrs['Alt_GALFORM_path'].tostring().decode("utf-8")
+    Cache = Conf.attrs['catalogue_cache_path'].tostring().decode("utf-8")
+    Conf.close()
+    if ZorM < 0.5:
+        ZM = 'z_obs'
+    elif Abs_App > 0.5:
+        ZM = 'app_mag'
+    else:
+        ZM = 'abs_mag'
+    
+    x_low = round(x,5)
+    x_up = x_low + round(x,5)
+
+    Conca_Pica(Sp,Cache,ZM,x_low,x_up)
+
+    return 0
+
+
 

@@ -206,14 +206,13 @@ def Lf(appa,gal_m_app,gal_m_abs,gal_z_obs,gal_color,frac,mag_lim,z_min,z_max,cos
                 lnz = len(hist)-i
                 break
         centres = E2C(E3)
-        cumsum = cumsum[fnz:lnz]
-        centres = M_bins[fnz:lnz]
+        centres = M_bins
     else:
         centres = []
         cumsum = []
         fnz = 41
         lnz = 41
-    return centres,np.log10(cumsum)
+    return centres,np.log10(cumsum),fnz,lnz
 
 def LFread(pathe):
     Katze = h5py.File(pathe,'r')
@@ -256,6 +255,8 @@ def LFMain(y):
     LFI = np.array(Conf['LF_Interpolation_Technique'])[()]
     k_corr = np.array(Conf['k_corr'])[()]
     wTar = np.array(Conf['plot_old_galform'])[()]
+    Iter = Conf['LF_Iteration_Numbers']
+    CrossIter = Conf['Cross_Iteration']
     if qTar < 0.5:
         TAR0 = 'RusGal'
     else:
@@ -293,8 +294,7 @@ def LFMain(y):
     lg = np.int(np.around(frac*lg0))
     qc = Rancho(lm,lm0)
     c_mx = c_mx[qc];z_mx = z_mx[qc];mapp = mapp[qc];mabs = mabs[qc]
-    qc = Rancho(lg,lg0)
-    c_ga1 = c_ga[qc];z_ga1 = z_ga[qc];gapp1 = gapp[qc];gabs1 = gabs[qc]
+    del qc;gc.collect()
 
     if appa > 0.5:
         M_bins = app_M_bins
@@ -302,16 +302,53 @@ def LFMain(y):
         M_bins = abs_M_bins
         del mapp,gapp;gc.collect()
         mapp = 0
-        gapp1 = 0
 
-    Refcen,Refcum = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
+    Refcen,Refcum,Reffnz,Reflnz = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
     del c_mx,z_mx,mapp,mabs;gc.collect()
+    Refcen = Refcen[Reffnz:Reflnz];Refcum = Refcum[Reffnz:Reflnz]
 
-    Tarcen,Tarcum = Lf(appa,gapp1,gabs1,z_ga,c_ga,frac,mag_lim,x_low,x_up,galf_Omm,M_bins)
-    del c_ga1,z_ga1,gapp1,gabs1;gc.collect()
+    for iTe in range(Iter):
+        
+        qc = Rancho(lg,lg0)
+        c_ga1 = c_ga[qc];z_ga1 = z_ga[qc];gapp1 = gapp[qc];gabs1 = gabs[qc]
+        del qc;gc.collect()
+    
+        if CrossIter > 0.5:
+            appa = ((-1)**iTe)/2.0 + 0.5
 
-    if LFI == 1:
-        gabs,gapp = LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
+        Tarcen,Tarcum,Tarfnz,Tarlnz = Lf(appa,gapp1,gabs1,z_ga,c_ga,frac,mag_lim,x_low,x_up,galf_Omm,M_bins)
+        del c_ga1,z_ga1,gapp1,gabs1;gc.collect()
+
+        if Tarfnz > Reffnz:
+            fnz = Tarfnz
+        else:
+            fnz = Reffnz
+        if Tarlnz < Reflnz:
+            lnz = Tarlnz
+        else:
+            lnz = Reflnz
+
+        Tarcen = Tarcen[Tarfnz:Tarlnz];Tarcum = Tarcum[Tarfnz:Tarlnz]
+
+        if iTe > 0.5 and np.max(np.abs((Tarcum[fnz:lnz] - Refcum[fnz:lnz])/(Refcum[fnz:lnz] - 1e-5))) < 0.1:
+            break
+
+        if iTe == 0:
+            Tarcum0 = Tarcum
+            Tarcen0 = Tarcen
+
+        if LFI == 1:
+            gabs,gapp = LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
+                
+    plt.figure()
+    plt.plot(Refcen,Refcum,label = 'MXXL')
+    plt.plot(Tarcen0,Tarcum,label = 'GALFORM')
+    plt.plot(Tarcen,Tarcum,label = 'alt_GALFORM')
+    plt.legend()
+    plt.ylabel('log Cumulative LF')
+    plt.xlabel('Magnitude')
+    plt.title('LF of z-range '+str(x_low)+'_'+str(x_up))
+    plt.savefig(picpath+'Comparison_LF_'+str(x_low)+'_'+str(x_up)+'.png',dpi = 170)
     
     del Refcum,Refcen,Tarcum,Tarcen,gabs,k_corr,z_ga,c_ga,mxxl_Omm;gc.collect()
 
