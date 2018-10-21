@@ -15,7 +15,7 @@ import sys
 MXXL_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/MXXL.h5"
 GALFORM_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/GALF.h5"
 Alt_GALFORM_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/Altg.h5"
-picsave_path = b"./pics"
+picsave_path = b"./pics/"
 catalogue_cache_path = b"/gpfs/data/ddsm49/GALFORM/Cache2/"
 # PLEASE ADD THE PATH AFTER THE LETTER b
 
@@ -34,7 +34,7 @@ Mag_max = 19.5
 Mag_Sep = 0.5 
 # The choice of the magnitude limit and the width of the each magnitude range
 
-Abs_App = 'App'
+Abs_App = 'Abs'
 # The choice of using apparent magnitude or the absolute magnitude
 
 Z_min = 0
@@ -76,7 +76,7 @@ Separation_Mode = 'Magnitude'
 Cumulative_N_OF_Z = 0
 
 Interpolate_LF = 1
-LF_iterations = 3
+LF_iterations = 8
 Plot_LF = 1
 LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5

@@ -248,13 +248,13 @@ def LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
     SHIF = ntcen - Tarcen
     maha = interp1d(Tarcen,ntcen,fill_value="extrapolate")
     if appa > 0.5:
-        gapp = maha(gapp)
-        if k_corr > 0.5:
-            gabs = M_abs(mxxl_Omm,z_ga,c_ga,gapp)
+        gapp2 = maha(gapp)
+        gabs2 = M_abs(mxxl_Omm,z_ga,c_ga,gapp2)
     else:
-        gabs = maha(gabs)
-        gapp = M_app(g_abs,z_ga,c_ga,mxxl_Omm)
-    return gabs,gapp
+        gabs2 = maha(gabs)
+        gapp2 = M_app(g_abs2,z_ga,c_ga,mxxl_Omm)
+    del gapp,gabs;gc.collect()
+    return gabs2,gapp2
 
 def LFmain(y):
     Conf = h5py.File('./Config.h5','r')
@@ -312,7 +312,7 @@ def LFmain(y):
         M_bins = app_M_bins
     else:
         M_bins = abs_M_bins
-        del mapp,gapp;gc.collect()
+        del mapp;gc.collect()
         mapp = 0
 
     Refcen,Refcum,Reffnz,Reflnz = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
@@ -320,9 +320,9 @@ def LFmain(y):
     Refceno = Refcen[Reffnz:Reflnz];Refcumo = Refcum[Reffnz:Reflnz]
     del Refcen;gc.collect()
 
-    for iTe in range(Iter):
-        
-        qc = RanCho(lg,lg0)
+    for iTe in range(Iter):        
+        bc = RanCho(lg,lg0)
+        qc = bc.copy()
         c_ga1 = c_ga[qc];z_ga1 = z_ga[qc];gapp1 = gapp[qc];gabs1 = gabs[qc]
         del qc;gc.collect()
     
@@ -343,7 +343,7 @@ def LFmain(y):
 
         Tarceno = Tarcen[Tarfnz:Tarlnz];Tarcumo = Tarcum[Tarfnz:Tarlnz]
 
-        if iTe > 0.5 and np.max(np.abs((Tarcum[fnz:lnz] - Refcum[fnz:lnz])/(Refcum[fnz:lnz] - 1e-5))) < 0.1:
+        if iTe > 0.5 and np.max(np.abs((Tarcum[fnz:lnz] - Refcum[fnz:lnz])/(Refcum[fnz:lnz]))) < 0.017:
             break
 
         del Tarcum,Tarcen;gc.collect()
