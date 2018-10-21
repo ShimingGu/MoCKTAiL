@@ -39,14 +39,14 @@ Abs_App = 'App'
 
 Z_min = 0
 Z_max = 0.50
-Z_Sep = 0.005
+Z_Sep = 0.01
 # The choice of the redshift limit and the width of the each redshift range
 
 #
 # AUTOMATIC MODES
 #
 
-Automatic_Mode = 0
+Automatic_Mode = 1
 # 0 = NO AUTOMATIC MODES
 # 1 = CHECK THE NEW REDSHIFT DISTRIBUTION DIRECTLY FROM OLD GALFORM CATALOGUE
 # 2 = CHECK THE NEW COLOUR DISTRIBUTION DIRECTLY FROM THE OLD GALFORM CATALOGUE
@@ -63,7 +63,7 @@ Automatic_Mode = 0
 Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
-Catalogue_Separation = 2
+Catalogue_Separation = 0
 # Separate the catalogues in order to make the code parallel
 # 0 = "REUSE", 1 = "REDO", 2 = "DELETE AND REDO"
 
@@ -75,14 +75,14 @@ Separation_Mode = 'Magnitude'
 
 Cumulative_N_OF_Z = 0
 
-Interpolate_LF = 0
-LF_iterations = 1
+Interpolate_LF = 1
+LF_iterations = 3
 Plot_LF = 1
 LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
 Cross_Iteration = 0
-Fractions = 0.05
+Fractions = 0.17
 
 Concatenate_Catalogues = 1
 # Plot the Luminosity Functions only or apply the correction to a new catalogue
@@ -210,36 +210,49 @@ Conf['plot_old_galform'] = PLOT_OLD_GALFORM
 Conf['FRAC'] = Fractions
 Conf.close()
 
-sys.path.append('./src')
+#sys.path.append(r'./src')
 from Catalo import Separa,Conca
 from NofZ import NofZmain
 from Lumino import LFmain
 #from Colodis import CDmain
 
 def Func0(Har):
-    for i in pool.map(Separa,Har):
-        p = 0
+    if Catalogue_Separation > 0.5:
+        for i in pool.map(Separa,Har):
+            p = 0
     return 0
 
 def Func1(Har):
+    global NofZmain
     if Fenli > 0.5 and Plot_N_of_Z > 0:
         for i in pool.map(NofZmain,Har):
             p = 0
     return 0
 
 def Func2(Har):
+    global LFmain
     if Fenli < 0.5 and Interpolate_LF > 0:
         for i in pool.map(LFmain,Har):
             p = 0
     return 0
 
+
+#Func0(Zs)
+#Func2(Zs)
+#Conca(Zs)
+
 if Automatic_Mode == 1:
-    Conf = h5py.File('Config.h5','w')
+    Conf = h5py.File('Config.h5','r+')
+    del Conf['ZorM'],Conf['Separation']
     Conf['ZorM'] = 0
     Conf['Separation'] = Z_Sep
+    Conf.close()
     Func0(Zs)
     Func2(Zs)
     Conca(Zs)
+    Conf = h5py.File('Config.h5','r+')
+    del Conf['ZorM'],Conf['Separation']
+    del Conf['Old_GALFORM'],Conf['plot_old_galform']
     Conf['ZorM'] = 1
     Conf['Separation'] = Mag_Sep
     Conf['Old_GALFORM'] = 1
@@ -247,4 +260,5 @@ if Automatic_Mode == 1:
     Func0(Mags)
     Func1(Mags)
     Conf.close()
+
 

@@ -53,7 +53,7 @@ def NofZmain(y):
     Conf.close()
 
     x_low = round(y,5)
-    x_up = x_low + round(x_sep,5)
+    x_up = round(x_low + round(x_sep,5),5)
     print (str(x_up)+'\n')
 
     if ZorM < 0.5:

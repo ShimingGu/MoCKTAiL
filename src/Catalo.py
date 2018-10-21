@@ -57,15 +57,16 @@ def Separa(y):
     Conf.close()
 
     x_low = round(y,5)
-    x_up = x_low + round(x_sep,5)
+    x_up = round(x_low + round(x_sep,5),5)
     print (x_up)
 
-    for EU in [MXp,GAp]:
-        RO = str(EU)
-        if EU == MXp:
+    for EU in [0,1]:#[MXp,GAp]:
+        if EU < 0.5:
             Taitou = 'MXXL'
-        else:
-            Taitou = TAR
+            RO = str(MXp)
+        elif EU > 0.5:
+            Taitou = str(TAR)
+            RO = str(GAp)
         
         if ZorM < 0.5:
             ZM = 'z_obs'
@@ -86,7 +87,8 @@ def Separa(y):
         for i in [0,1,2,3,4,5,6,7,8,9]:
             Neicun(i,Cat,Katze,bds)
         del bds;gc.collect()
-        return 0
+        Katze.close()
+    return 0
 
 
 def Conca_Pica(Sp,Cache,ZM,xl,xu):
@@ -101,7 +103,7 @@ def Conca_Pica(Sp,Cache,ZM,xl,xu):
             Qata = h5py.File(Cache+ZM+'/'+'RusGal_'+str(xl[0])+'_'+str(xu[0])+'.h5','r')
             Cada = Qata[str(Yaoshi)]
             Cada0 = np.concatenate((Cada0,Cada))
-            del Cada,gc.collect()
+            del Cada;gc.collect()
             Qata.close()
         Nada[str(Yaoshi)] = Cada0
     Qata0.close()
@@ -124,8 +126,8 @@ def Conca(x):
     else:
         ZM = 'abs_mag'
     
-    x_low = round(x,5)
-    x_up = x_low + round(x,5)
+    x_low = np.round(x,5)
+    x_up = np.round(x_low + np.round(x_sep,5),5)
 
     Conca_Pica(Sp,Cache,ZM,x_low,x_up)
 

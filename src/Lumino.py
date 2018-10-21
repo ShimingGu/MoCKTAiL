@@ -2,12 +2,16 @@ import numpy as np
 import copy
 import gc
 import os
+import h5py
 from numba import jit
 import astropy.coordinates
 import astropy.units as u
 import astropy.cosmology
 from scipy.optimize import curve_fit
 from scipy.interpolate import interp1d
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 #
 # k correction calculations:
@@ -66,9 +70,11 @@ def lum_dis(Omm,z):
 
 # main function of this part
 
-@jit(nopython = True)
+#@jit(nopython = True)
 def M_abs(cos,z,jud,r):
-    M = r - 0.77451 - 5*np.log10(lum_dis(cos,z)) - 25 - korr(z,jud)
+    M = np.zeros(len(r))
+    for i in range(len(z)):
+        M[i] = r[i] - 0.77451 - 5*np.log10(lum_dis(cos,z[i])) - 25 - korr(z[i],jud[i])
     return M
 
 # apply it to the catalogues
@@ -91,7 +97,9 @@ def Nova_abs_mag_r(z_obs,color,app_m,cos):
 
 @jit(nopython = True)
 def M_app(abs_mag,z,jud,cos):
-    m = abs_mag - 0.77451 - 5*np.log10(lum_dis(cos,z)) + 25 + korr(z,jud)
+    m = np.zeros(len(abs_mag))
+    for i in range(len(abs_mag)):
+        m[i] = abs_mag[i] - 0.77451 - 5*np.log10(lum_dis(cos,z[i])) + 25 + korr0(z[i],jud[i])
     return m
 
 def Cata_abs_2_app(abs_m,z,color,cos):
@@ -101,15 +109,19 @@ def Cata_abs_2_app(abs_m,z,color,cos):
 
 @jit(nopython = True)
 def dl_max(abs_mag,mag_lim,z,jud):
-    l = mag_lim + 5*np.log10(0.7) - abs_mag - 25 - korr(z,jud)
+    l = mag_lim + 5*np.log10(0.7) - abs_mag - 25 - korr0(z,jud)
     l = l/5
     l = 10 ** l
     return l
 
 @jit(nopython = True)
+def M_app_i(abs_mag,z,jud,cos):
+    return abs_mag - 0.77451 - 5*np.log10(lum_dis(cos,z)) + 25 + korr0(z,jud)
+
+#@jit(nopython = True)
 def find_l_max(abs_mag,cos,mag_lim,z,jud,z_max):
     l_lim = dl_max(abs_mag,mag_lim,z,jud)
-    m_app = M_app(abs_mag,z_max,jud,cos)
+    m_app = M_app_i(abs_mag,z_max,jud,cos)
     if m_app < mag_lim:
         return lum_dis(cos,z_max)
     else:
@@ -126,7 +138,7 @@ def Volume(l_small,l_big,sqdeg,frac):
     Vol = Vol * frac
     return Vol
 
-@jit(nopython = True)
+#@jit(nopython = True)
 def Add_vol(gal_m_abs,gal_z_obs,gal_color,sqdeg,frac,mag_lim,z_min,z_max,cos):
     l_small = lum_dis(cos,z_min)
     
@@ -141,7 +153,7 @@ def Add_vol(gal_m_abs,gal_z_obs,gal_color,sqdeg,frac,mag_lim,z_min,z_max,cos):
     
     return Vols
 
-@jit(nopython = True)
+#@jit(nopython = True)
 def add_Vol2(gal_m_abs,gal_z_obs,gal_color,sqdeg,frac,mag_lim,z_min,z_max,cos):
     l_small = lum_dis(cos,z_min)
     l_big = find_l_max(gal_m_abs,cos,mag_lim,gal_z_obs,gal_color,z_max)
@@ -238,13 +250,13 @@ def LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
     if appa > 0.5:
         gapp = maha(gapp)
         if k_corr > 0.5:
-            gabs = M_abs(z_ga,c_ga,gapp,mxxl_Omm)
+            gabs = M_abs(mxxl_Omm,z_ga,c_ga,gapp)
     else:
         gabs = maha(gabs)
-        gapp = M_app(g_abs,z_ga,c_ga,,mxxl_Omm)
+        gapp = M_app(g_abs,z_ga,c_ga,mxxl_Omm)
     return gabs,gapp
 
-def LFMain(y):
+def LFmain(y):
     Conf = h5py.File('./Config.h5','r')
     x_sep = np.array(Conf['Separation'])[()]
     ZorM = np.array(Conf['ZorM'])[()]
@@ -255,8 +267,8 @@ def LFMain(y):
     LFI = np.array(Conf['LF_Interpolation_Technique'])[()]
     k_corr = np.array(Conf['k_corr'])[()]
     wTar = np.array(Conf['plot_old_galform'])[()]
-    Iter = Conf['LF_Iteration_Numbers']
-    CrossIter = Conf['Cross_Iteration']
+    Iter = Conf['LF_Iteration_Numbers'][()]
+    CrossIter = Conf['Cross_Iteration'][()]
     if qTar < 0.5:
         TAR0 = 'RusGal'
     else:
@@ -266,7 +278,7 @@ def LFMain(y):
     Conf.close()
 
     x_low = round(y,5)
-    x_up = x_low + round(x_sep,5)
+    x_up = round(x_low + round(x_sep,5),5)
     print (x_up)
 
     galf_Omm = 0.307
@@ -285,14 +297,14 @@ def LFMain(y):
     z_ga,gabs,gapp,c_ga = LFread(Cache+ZM+'/'+'GALFORM_'+str(x_low)+'_'+str(x_up)+'.h5')
 
     if k_corr > 0.5:
-        mabs = M_abs(z_mx,c_mx,mapp,mxxl_Omm)
-        gabs = M_abs(z_ga,c_ga,gapp,galf_Omm)
+        mabs = M_abs(mxxl_Omm,z_mx,c_mx,mapp)
+        gabs = M_abs(galf_Omm,z_ga,c_ga,gapp)
 
     lm0 = len(mabs)
     lm = np.int(np.around(frac*lm0))
     lg0 = len(gabs)
     lg = np.int(np.around(frac*lg0))
-    qc = Rancho(lm,lm0)
+    qc = RanCho(lm,lm0)
     c_mx = c_mx[qc];z_mx = z_mx[qc];mapp = mapp[qc];mabs = mabs[qc]
     del qc;gc.collect()
 
@@ -305,11 +317,12 @@ def LFMain(y):
 
     Refcen,Refcum,Reffnz,Reflnz = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
     del c_mx,z_mx,mapp,mabs;gc.collect()
-    Refcen = Refcen[Reffnz:Reflnz];Refcum = Refcum[Reffnz:Reflnz]
+    Refceno = Refcen[Reffnz:Reflnz];Refcumo = Refcum[Reffnz:Reflnz]
+    del Refcen;gc.collect()
 
     for iTe in range(Iter):
         
-        qc = Rancho(lg,lg0)
+        qc = RanCho(lg,lg0)
         c_ga1 = c_ga[qc];z_ga1 = z_ga[qc];gapp1 = gapp[qc];gabs1 = gabs[qc]
         del qc;gc.collect()
     
@@ -328,43 +341,47 @@ def LFMain(y):
         else:
             lnz = Reflnz
 
-        Tarcen = Tarcen[Tarfnz:Tarlnz];Tarcum = Tarcum[Tarfnz:Tarlnz]
+        Tarceno = Tarcen[Tarfnz:Tarlnz];Tarcumo = Tarcum[Tarfnz:Tarlnz]
 
         if iTe > 0.5 and np.max(np.abs((Tarcum[fnz:lnz] - Refcum[fnz:lnz])/(Refcum[fnz:lnz] - 1e-5))) < 0.1:
             break
 
-        if iTe == 0:
-            Tarcum0 = Tarcum
-            Tarcen0 = Tarcen
+        del Tarcum,Tarcen;gc.collect()
 
-        if LFI == 1:
-            gabs,gapp = LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
+        if iTe == 0:
+            Tarcum0 = Tarcumo
+            Tarcen0 = Tarceno
+
+        if LFI > 0.75 and LFI < 1.25:
+            gabs,gapp = LFI010(Refcumo,Refceno,Tarcumo,Tarceno,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
                 
     plt.figure()
-    plt.plot(Refcen,Refcum,label = 'MXXL')
-    plt.plot(Tarcen0,Tarcum,label = 'GALFORM')
-    plt.plot(Tarcen,Tarcum,label = 'alt_GALFORM')
+    plt.plot(Refceno,Refcumo,label = 'MXXL')
+    plt.plot(Tarcen0,Tarcum0,label = 'GALFORM')
+    plt.plot(Tarceno,Tarcumo,label = 'alt_GALFORM')
     plt.legend()
     plt.ylabel('log Cumulative LF')
     plt.xlabel('Magnitude')
     plt.title('LF of z-range '+str(x_low)+'_'+str(x_up))
     plt.savefig(picpath+'Comparison_LF_'+str(x_low)+'_'+str(x_up)+'.png',dpi = 170)
     
-    del Refcum,Refcen,Tarcum,Tarcen,gabs,k_corr,z_ga,c_ga,mxxl_Omm;gc.collect()
+    del Refcumo,Refceno,Tarcum0,Tarcen0,Tarcumo,Tarceno,k_corr,z_ga,c_ga,mxxl_Omm;gc.collect()
 
     rusgal = str(Cache+ZM+'/'+'RusGal_'+str(x_low)+'_'+str(x_up)+'.h5')
-    os.system('cp '+Cache+ZM+'/'+'GALFORM_'+str(x_low)+'_'+str(x_up)+'.h5 '+rusgal)
-    Conf0 = h5py.File(rusgal,'r')
-    Conf1 = h5py.File(rusgal,'w')
-    Conf1['old_app_mag'] = Conf0['app_mag']
+    oldgal = str(Cache+ZM+'/'+'GALFORM_'+str(x_low)+'_'+str(x_up)+'.h5')
+    os.system('cp '+oldgal+' '+rusgal)
+    Conf0 = h5py.File(oldgal,'r')
+    Conf1 = h5py.File(rusgal,'r+')
+    Conf1['old_app_mag'] = np.array(Conf0['app_mag'])
+    del Conf1['app_mag']
     Conf1['app_mag'] = gapp
-    Conf1['old_abs_mag'] = Conf0['abs_mag']
+    Conf1['old_abs_mag'] = np.array(Conf0['abs_mag'])
+    del Conf1['abs_mag']
     Conf1['abs_mag'] = gabs
+    Conf0.close()
     Conf1.close()
 
     return 0
-
-
 
 
 
