@@ -77,6 +77,10 @@ def M_abs(cos,z,jud,r):
         M[i] = r[i] - 0.77451 - 5*np.log10(lum_dis(cos,z[i])) - 25 - korr(z[i],jud[i])
     return M
 
+@jit(nopython = True)
+def M_abs_i(cos,z,jud,r):
+    return r - 0.77451 - 5*np.log10(lum_dis(cos,z)) - 25 - korr0(z,jud)
+
 # apply it to the catalogues
 
 def Nova_abs_mag_r(z_obs,color,app_m,cos):
@@ -242,18 +246,22 @@ def RanCho(n0,n1):
         q[i] = True
     return np.random.permutation(q)
 
-def LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm):
+def LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,mag_lim,z_ga,c_ga,Omm):
     afhj = interp1d(Refcum,Refcen,fill_value="extrapolate")
     ntcen = afhj(Tarcum)
     SHIF = ntcen - Tarcen
     maha = interp1d(Tarcen,ntcen,fill_value="extrapolate")
     if appa > 0.5:
         gapp2 = maha(gapp)
-        gabs2 = M_abs(mxxl_Omm,z_ga,c_ga,gapp2)
+        gabs2 = M_abs(Omm,z_ga,c_ga,gapp2)
     else:
         gabs2 = maha(gabs)
-        gapp2 = M_app(g_abs2,z_ga,c_ga,mxxl_Omm)
+        gapp2 = M_app(gabs2,z_ga,c_ga,Omm)
     del gapp,gabs;gc.collect()
+    for i in range(len(gapp2)):
+        if np.isnan(gapp2[i]) == True:
+            gapp2[i] = mag_lim + 0.5
+            gabs2[i] = M_abs_i(Omm,z_ga[i],c_ga[i],gapp2[i])
     return gabs2,gapp2
 
 def LFmain(y):
@@ -265,6 +273,7 @@ def LFmain(y):
     qTar = np.array(Conf['Old_GALFORM'])[()]
     frac = np.array(Conf['FRAC'])[()]
     LFI = np.array(Conf['LF_Interpolation_Technique'])[()]
+    print ('LFI = '+str(LFI)+'\n')
     k_corr = np.array(Conf['k_corr'])[()]
     wTar = np.array(Conf['plot_old_galform'])[()]
     Iter = Conf['LF_Iteration_Numbers'][()]
@@ -353,7 +362,7 @@ def LFmain(y):
             Tarcen0 = Tarceno
 
         if LFI > 0.75 and LFI < 1.25:
-            gabs,gapp = LFI010(Refcumo,Refceno,Tarcumo,Tarceno,appa,gapp,gabs,k_corr,z_ga,c_ga,mxxl_Omm)
+            gabs,gapp = LFI010(Refcumo,Refceno,Tarcumo,Tarceno,appa,gapp,gabs,mag_lim,z_ga,c_ga,galf_Omm)
                 
     plt.figure()
     plt.plot(Refceno,Refcumo,label = 'MXXL')
@@ -365,7 +374,7 @@ def LFmain(y):
     plt.title('LF of z-range '+str(x_low)+'_'+str(x_up))
     plt.savefig(picpath+'Comparison_LF_'+str(x_low)+'_'+str(x_up)+'.png',dpi = 170)
     
-    del Refcumo,Refceno,Tarcum0,Tarcen0,Tarcumo,Tarceno,k_corr,z_ga,c_ga,mxxl_Omm;gc.collect()
+    del Refcumo,Refceno,Tarcum0,Tarcen0,Tarcumo,Tarceno,z_ga,c_ga;gc.collect()
 
     rusgal = str(Cache+ZM+'/'+'RusGal_'+str(x_low)+'_'+str(x_up)+'.h5')
     oldgal = str(Cache+ZM+'/'+'GALFORM_'+str(x_low)+'_'+str(x_up)+'.h5')
