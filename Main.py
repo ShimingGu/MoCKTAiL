@@ -27,8 +27,8 @@ App_Mag_max = 19.5
 App_Mag_Sep = 0.5
 # The choice of the apparent magnitude limit and the width of the each apparent magnitude range
 
-Abs_Mag_min = -30.0
-Abs_Mag_max = -5.0
+Abs_Mag_min = -25.0
+Abs_Mag_max = -15.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
@@ -42,7 +42,7 @@ Abs_App = 'Abs'
 
 Z_min = 0
 Z_max = 0.50
-Z_Sep = 0.01
+Z_Sep = 0.005
 # The choice of the redshift limit and the width of the each redshift range
 
 #
@@ -63,7 +63,7 @@ Automatic_Mode = 1
 # MANUAL CATALOGUE SETTINGS
 #
 
-Use_Auld_GALFORM_Catalogue = 1
+Use_Auld_GALFORM_Catalogue = 0
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
 Catalogue_Separation = 1
@@ -85,7 +85,7 @@ LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
 Cross_Iteration = 0
-Fractions = 0.17
+Fractions = 1
 
 Concatenate_Catalogues = 0
 # Plot the Luminosity Functions only or apply the correction to a new catalogue
@@ -259,9 +259,9 @@ if Automatic_Mode == 1:
     Conf['ZorM'] = 0
     Conf['Separation'] = Z_Sep
     Conf.close()
-    #Func0(Zs)
-    #Func2(Zs,Interpolate_LF,Fenli)
-    #Conca(Zs)
+    Func0(Zs)
+    Func2(Zs,Interpolate_LF,Fenli)
+    Conca(Zs)
     Conf = h5py.File('Config.h5','r+')
     del Conf['ZorM'],Conf['Separation']
     del Conf['Old_GALFORM'],Conf['plot_old_galform']
