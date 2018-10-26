@@ -108,6 +108,8 @@ def Conca_Pica(Sp,Cache,ZM,xl,xu):
             del Cada;gc.collect()
             Qata.close()
         Nada[str(Yaoshi)] = Cada0
+    for Ysh in Nada.keys():
+        print (str(Ysh))
     Qata0.close()
     Nada.close()
     return 0

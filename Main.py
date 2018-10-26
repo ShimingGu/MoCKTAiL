@@ -84,7 +84,7 @@ Plot_LF = 1
 LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
-Cross_Iteration = 0
+Cross_Iteration = 1
 Fractions = 0.05
 
 Concatenate_Catalogues = 1
