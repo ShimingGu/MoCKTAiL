@@ -66,7 +66,7 @@ Automatic_Mode = 1
 Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
-Catalogue_Separation = 0
+Catalogue_Separation = 2
 # Separate the catalogues in order to make the code parallel
 # 0 = "REUSE", 1 = "REDO", 2 = "DELETE AND REDO"
 

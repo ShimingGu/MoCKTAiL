@@ -7,6 +7,9 @@ import h5py
 import cython
 import gc
 import sys
+import datetime
+
+t0 = datetime.datetime.now()
 
 #
 # Default Parameter Settings
@@ -29,9 +32,9 @@ Abs_Mag_max = -5.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
-Mag_min = 9.5
-Mag_max = 19.5
-Mag_Sep = 0.5 
+#Mag_min = 9.5
+#Mag_max = 19.5
+#Mag_Sep = 0.5
 # The choice of the magnitude limit and the width of the each magnitude range
 
 Abs_App = 'Abs'
@@ -63,7 +66,7 @@ Automatic_Mode = 1
 Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
-Catalogue_Separation = 0
+Catalogue_Separation = 1
 # Separate the catalogues in order to make the code parallel
 # 0 = "REUSE", 1 = "REDO", 2 = "DELETE AND REDO"
 
@@ -75,7 +78,7 @@ Separation_Mode = 'Magnitude'
 
 Cumulative_N_OF_Z = 0
 
-Interpolate_LF = 1
+Interpolate_LF = 0
 LF_iterations = 8
 Plot_LF = 1
 LF_Interpolation = '1-D Interpolation'
@@ -84,7 +87,7 @@ k_correction = 1
 Cross_Iteration = 0
 Fractions = 0.17
 
-Concatenate_Catalogues = 1
+Concatenate_Catalogues = 0
 # Plot the Luminosity Functions only or apply the correction to a new catalogue
 
 Color_Distribution = 0
@@ -100,12 +103,12 @@ pool = multiprocessing.Pool(processes=cores)
 os.system('mkdir '+str(catalogue_cache_path.decode("utf-8")))
 os.system('mkdir '+str(picsave_path.decode("utf-8")))
 
-Mags = np.arange(Mag_min,Mag_max,Mag_Sep)
-Zs = np.arange(Z_min,Z_max,Z_Sep)
-MS = np.array([Mag_Sep])
-ZD = np.array([Z_Sep])
-Mags = np.around(10000*Mags);Mags = Mags.astype('int');Mags = Mags/10000.0
-Zs = np.around(10000*Zs);Zs = Zs.astype('int');Zs = Zs/10000.0
+#Mags = np.arange(Mag_min,Mag_max,Mag_Sep)
+#Zs = np.arange(Z_min,Z_max,Z_Sep)
+#MS = np.array([Mag_Sep])
+#ZD = np.array([Z_Sep])
+#Mags = np.around(10000*Mags);Mags = Mags.astype('int');Mags = Mags/10000.0
+#Zs = np.around(10000*Zs);Zs = Zs.astype('int');Zs = Zs/10000.0
 
 ###################################################################
 ######################### I AM A LINE #############################
@@ -120,7 +123,7 @@ if Abs_App == 'App':
 if Abs_App == 'Apparent':
     Abs_App = 1
 
-if Abs_App == 0:
+if Abs_App < 0.5:
     Mag_min = Abs_Mag_min
     Mag_max = Abs_Mag_max
     Mag_Sep = Abs_Mag_Sep
@@ -164,6 +167,13 @@ if Interpolate_LF == 1 and LF_iterations < 1:
 ######################### I AM A LINE #############################
 ###################################################################
 
+Mags = np.arange(Mag_min,Mag_max,Mag_Sep)
+Zs = np.arange(Z_min,Z_max,Z_Sep)
+MS = np.array([Mag_Sep])
+ZD = np.array([Z_Sep])
+Mags = np.around(10000*Mags);Mags = Mags.astype('int');Mags = Mags/10000.0
+Zs = np.around(10000*Zs);Zs = Zs.astype('int');Zs = Zs/10000.0
+
 #
 # Code
 #
@@ -190,6 +200,8 @@ else:
     Har = Zs
     FEN = Z_Sep
     print ('Zs')
+
+LFI = 1
 
 Conf = h5py.File('Config.h5','w')
 Conf['Separation'] = FEN
@@ -222,16 +234,16 @@ def Func0(Har):
             p = 0
     return 0
 
-def Func1(Har):
+def Func1(Har,Plot_N_of_Z = 0):
     global NofZmain
     if Fenli > 0.5 and Plot_N_of_Z > 0:
         for i in pool.map(NofZmain,Har):
             p = 0
     return 0
 
-def Func2(Har):
+def Func2(Har,ILF,Fl):
     global LFmain
-    if Fenli < 0.5 and Interpolate_LF > 0:
+    if Fl < 0.5 and ILF > 0:
         for i in pool.map(LFmain,Har):
             p = 0
     return 0
@@ -247,18 +259,19 @@ if Automatic_Mode == 1:
     Conf['ZorM'] = 0
     Conf['Separation'] = Z_Sep
     Conf.close()
-    Func0(Zs)
-    Func2(Zs)
-    Conca(Zs)
+    #Func0(Zs)
+    #Func2(Zs,Interpolate_LF,Fenli)
+    #Conca(Zs)
     Conf = h5py.File('Config.h5','r+')
     del Conf['ZorM'],Conf['Separation']
     del Conf['Old_GALFORM'],Conf['plot_old_galform']
     Conf['ZorM'] = 1
     Conf['Separation'] = Mag_Sep
-    Conf['Old_GALFORM'] = 1
+    Conf['Old_GALFORM'] = 0
     Conf['plot_old_galform'] = 1
-    Func0(Mags)
-    Func1(Mags)
     Conf.close()
+    Func0(Mags)
+    Func1(Mags,Plot_N_of_Z = 1)
 
-
+t1 = datetime.datetime.now() - t0
+print ('Total Time Cost = '+str(t1)+' \n')
