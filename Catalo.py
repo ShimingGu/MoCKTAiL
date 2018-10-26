@@ -98,6 +98,7 @@ def Conca_Pica(Sp,Cache,ZM,xl,xu):
     Qata0 = h5py.File(rusgal0,'r')
     Nada = h5py.File(altgal,'w')
     for Yaoshi in Qata0.keys():
+        print (str(Yaoshi))
         Cada0 = Qata0[str(Yaoshi)]
         for i in range(1,len(xl)):
             x_l = xl[i];x_u = xu[i]
@@ -130,6 +131,7 @@ def Conca(x):
     
     x_low = np.round(x,5)
     x_up = np.round(x_low + np.round(x_sep,5),5)
+    
 
     Conca_Pica(Sp,Cache,ZM,x_low,x_up)
 

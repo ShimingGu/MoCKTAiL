@@ -42,7 +42,7 @@ Abs_App = 'Abs'
 
 Z_min = 0
 Z_max = 0.50
-Z_Sep = 0.005
+Z_Sep = 0.01
 # The choice of the redshift limit and the width of the each redshift range
 
 #
@@ -63,7 +63,7 @@ Automatic_Mode = 1
 # MANUAL CATALOGUE SETTINGS
 #
 
-Use_Auld_GALFORM_Catalogue = 0
+Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
 Catalogue_Separation = 1
@@ -85,9 +85,9 @@ LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
 Cross_Iteration = 0
-Fractions = 1
+Fractions = 0.05
 
-Concatenate_Catalogues = 0
+Concatenate_Catalogues = 1
 # Plot the Luminosity Functions only or apply the correction to a new catalogue
 
 Color_Distribution = 0

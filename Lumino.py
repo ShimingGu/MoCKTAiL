@@ -293,7 +293,7 @@ def LFmain(y):
     galf_Omm = 0.307
     mxxl_Omm = 0.25
     apM = np.linspace(9.5**2,19.5**2,1000);app_M_bins = np.sqrt(apM)
-    abs_M_bins = np.arange(-30,-5,0.01)
+    abs_M_bins = np.arange(-30,-5,0.001)
     app_M_bins = np.arange(9.5,19.5,0.001)
 
     if ZorM < 0.5:
