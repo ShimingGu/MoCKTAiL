@@ -249,6 +249,7 @@ def RanCho(n0,n1):
 def LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,mag_lim,z_ga,c_ga,Omm):
     afhj = interp1d(Refcum,Refcen,fill_value="extrapolate")
     ntcen = afhj(Tarcum)
+    #SHIF = ntcen - Tarcen
     maha = interp1d(Tarcen,ntcen,fill_value="extrapolate")
     if appa > 0.5:
         gapp2 = maha(gapp)
@@ -277,8 +278,6 @@ def LFmain(y):
     wTar = np.array(Conf['plot_old_galform'])[()]
     Iter = Conf['LF_Iteration_Numbers'][()]
     CrossIter = Conf['Cross_Iteration'][()]
-    NorF = Conf['NorF'][()]
-    Object_Numbers = Conf['LFN'][()]
     if qTar < 0.5:
         TAR0 = 'RusGal'
     else:
@@ -294,8 +293,8 @@ def LFmain(y):
     galf_Omm = 0.307
     mxxl_Omm = 0.25
     apM = np.linspace(9.5**2,19.5**2,1000);app_M_bins = np.sqrt(apM)
-    abs_M_bins = np.arange(-30,-5,0.01)
-    app_M_bins = np.arange(9.5,19.5,0.01)
+    abs_M_bins = np.arange(-30,-5,0.001)
+    app_M_bins = np.arange(9.5,19.5,0.001)
 
     if ZorM < 0.5:
         ZM = 'z_obs'
@@ -310,22 +309,10 @@ def LFmain(y):
         mabs = M_abs(mxxl_Omm,z_mx,c_mx,mapp)
         gabs = M_abs(galf_Omm,z_ga,c_ga,gapp)
 
-    if NorF > 0.5:
-        lm0 = len(mabs)
-        lm = np.int(np.around(frac*lm0))
-        lg0 = len(gabs)
-        lg = np.int(np.around(frac*lg0))
-    else:
-        lg0 = len(gabs)
-        if lg0 < 2*Object_Numbers:
-            lg = np.int(np.around(0.5*lg0))
-            frac = 0.5
-        else:
-            lg = Object_Numbers
-            frac = lg/lg0
-        lm0 = len(mabs)
-        lm = np.int(np.around(frac*lm0))
-
+    lm0 = len(mabs)
+    lm = np.int(np.around(frac*lm0))
+    lg0 = len(gabs)
+    lg = np.int(np.around(frac*lg0))
     qc = RanCho(lm,lm0)
     c_mx = c_mx[qc];z_mx = z_mx[qc];mapp = mapp[qc];mabs = mabs[qc]
     del qc;gc.collect()
@@ -338,34 +325,22 @@ def LFmain(y):
         mapp = 0
 
     Refcen,Refcum,Reffnz,Reflnz = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
-    #del c_mx,z_mx,mapp,mabs;gc.collect()
     Refceno = Refcen[Reffnz:Reflnz];Refcumo = Refcum[Reffnz:Reflnz]
     del Refcen;gc.collect()
 
-    Refcenap = 0
     if CrossIter > 0.5:
         Refcenap,Refcumap,Reffnzap,Reflnzap = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
     del c_mx,z_mx,mapp,mabs,Refcenap;gc.collect()
-    
+
     for iTe in range(Iter):        
         bc = RanCho(lg,lg0)
-        sc = bc.copy()
-        c_ga1 = c_ga[sc];z_ga1 = z_ga[sc];gapp1 = gapp[sc];gabs1 = gabs[sc]
-        del sc;gc.collect()
+        qc = bc.copy()
+        c_ga1 = c_ga[qc];z_ga1 = z_ga[qc];gapp1 = gapp[qc];gabs1 = gabs[qc]
+        del qc;gc.collect()
     
         if CrossIter > 0.5:
-            appa = ((-1)**(iTe))/2.0 + 0.5
-
-        if appa > 0.5:
-            M_bins = app_M_bins
-        else:
-            del gapp1;gc.collect()
-            gapp1 = 0
-            M_bins = abs_M_bins
-
-        Tarcen,Tarcum,Tarfnz,Tarlnz = Lf(appa,gapp1,gabs1,z_ga1,c_ga1,frac,mag_lim,x_low,x_up,galf_Omm,M_bins)
-        del c_ga1,z_ga1,gapp1,gabs1;gc.collect()
-
+            appa = ((-1)**iTe)/2.0 + 0.5
+ 
         if appa > 0.5:
             recu = Refcumap
             rfnz = Reffnzap
@@ -374,6 +349,9 @@ def LFmain(y):
             recu = Refcum
             rfnz = Reffnz
             rlnz = Reflnz
+
+        Tarcen,Tarcum,Tarfnz,Tarlnz = Lf(appa,gapp1,gabs1,z_ga,c_ga,frac,mag_lim,x_low,x_up,galf_Omm,M_bins)
+        del c_ga1,z_ga1,gapp1,gabs1;gc.collect()
 
         if Tarfnz > rfnz:
             fnz = Tarfnz
@@ -384,12 +362,9 @@ def LFmain(y):
         else:
             lnz = rlnz
 
-        print ('fnz,lnz,Tarfnz,Tarlnz,Reffnz,Reflnz,Abs_App,z_low,z_up')
-        print (fnz,lnz,Tarfnz,Tarlnz,rfnz,rlnz,appa,x_low,x_up)
-        
         Tarceno = Tarcen[Tarfnz:Tarlnz];Tarcumo = Tarcum[Tarfnz:Tarlnz]
 
-        if np.max(np.abs((Tarcum[fnz:lnz] - recu[fnz:lnz])/(recu[fnz:lnz]))) < 0.017:
+        if iTe > 1.5 and np.max(np.abs((Tarcum[fnz:lnz] - recu[fnz:lnz])/(Refcum[fnz:lnz]))) < 0.017:
             break
 
         del Tarcum,Tarcen;gc.collect()

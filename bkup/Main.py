@@ -32,6 +32,11 @@ Abs_Mag_max = -15.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
+#Mag_min = 9.5
+#Mag_max = 19.5
+#Mag_Sep = 0.5
+# The choice of the magnitude limit and the width of the each magnitude range
+
 Abs_App = 'Abs'
 # The choice of using apparent magnitude or the absolute magnitude
 
@@ -74,15 +79,13 @@ Separation_Mode = 'Magnitude'
 Cumulative_N_OF_Z = 0
 
 Interpolate_LF = 1
-LF_iterations = 4
+LF_iterations = 8
 Plot_LF = 1
 LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
-Cross_Iteration = 0
-Number_or_Fraction = 'Number'
-Object_Numbers = 2000
-Fractions = 0.05
+Cross_Iteration = 1
+Fractions = 0.1
 
 Concatenate_Catalogues = 1
 # Plot the Luminosity Functions only or apply the correction to a new catalogue
@@ -99,6 +102,13 @@ pool = multiprocessing.Pool(processes=cores)
 
 os.system('mkdir '+str(catalogue_cache_path.decode("utf-8")))
 os.system('mkdir '+str(picsave_path.decode("utf-8")))
+
+#Mags = np.arange(Mag_min,Mag_max,Mag_Sep)
+#Zs = np.arange(Z_min,Z_max,Z_Sep)
+#MS = np.array([Mag_Sep])
+#ZD = np.array([Z_Sep])
+#Mags = np.around(10000*Mags);Mags = Mags.astype('int');Mags = Mags/10000.0
+#Zs = np.around(10000*Zs);Zs = Zs.astype('int');Zs = Zs/10000.0
 
 ###################################################################
 ######################### I AM A LINE #############################
@@ -126,11 +136,11 @@ Fenli = Separation_Mode
 
 if Fenli == 'Redshift':
     Fenli = 0
-elif Fenli == 'redshift':
+if Fenli == 'redshift':
     Fenli = 0
-elif Fenli == 'Magnitude':
+if Fenli == 'Magnitude':
     Fenli = 1
-elif Fenli == 'magnitude':
+if Fenli == 'magnitude':
     Fenli = 1
 
 if Interpolate_LF == 1:
@@ -139,32 +149,19 @@ if Interpolate_LF == 1:
 
 if LF_Interpolation == '1-D Interpolation' or '1-D interpolation' or '1DI':
     LFI = 1
-elif LF_Interpolation == '2-D Interpolation' or '2-D interpolation' or '2DI':
+if LF_Interpolation == '2-D Interpolation' or '2-D interpolation' or '2DI':
     LFI = 2
-elif LF_Interpolation == '1-D Semi-Interpolation' or '1-D semi-interpolation' or '1DSI':
+if LF_Interpolation == '1-D Semi-Interpolation' or '1-D semi-interpolation' or '1DSI':
     LFI = 1.5
-elif LF_Interpolation == '2-D Semi-Interpolation' or '2-D semi-interpolation' or '2DSI':
+if LF_Interpolation == '2-D Semi-Interpolation' or '2-D semi-interpolation' or '2DSI':
     LFI = 2.5
-elif LF_Interpolation == '1-D Regression' or '1-D Regression' or '1DR':
+if LF_Interpolation == '1-D Regression' or '1-D Regression' or '1DR':
     LFI = 0
-elif LF_Interpolation == '2-D Regression' or '2-D Regression' or '2DR':
+if LF_Interpolation == '2-D Regression' or '2-D Regression' or '2DR':
     LFI = 0.5
 
 if Interpolate_LF == 1 and LF_iterations < 1:
     LF_iterations = 1
-
-if Number_or_Fraction == 'Number':
-    NorF = 0
-elif Number_or_Fraction == 'number':
-    NorF = 0
-elif Number_or_Fraction == 'N':
-    NorF = 0
-elif Number_or_Fraction == 'Fraction':
-    NorF = 1
-elif Number_or_Fraction == 'fraction':
-    NorF = 1
-elif Number_or_Fraction == 'F':
-    NorF = 1
 
 ###################################################################
 ######################### I AM A LINE #############################
@@ -223,8 +220,6 @@ Conf.attrs['picsave_path'] = np.void(picsave_path)
 Conf.attrs['catalogue_cache_path'] = np.void(catalogue_cache_path)
 Conf['plot_old_galform'] = PLOT_OLD_GALFORM
 Conf['FRAC'] = Fractions
-Conf['NorF'] = NorF
-Conf['LFN'] = Object_Numbers
 Conf.close()
 
 #sys.path.append(r'./src')
