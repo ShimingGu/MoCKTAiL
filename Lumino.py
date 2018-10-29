@@ -334,8 +334,7 @@ def LFmain(y):
         M_bins = app_M_bins
     else:
         M_bins = abs_M_bins
-        del mapp;gc.collect()
-        mapp = 0
+        #mapp = 0
 
     Refcen,Refcum,Reffnz,Reflnz = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
     #del c_mx,z_mx,mapp,mabs;gc.collect()
@@ -344,7 +343,7 @@ def LFmain(y):
 
     Refcenap = 0
     if CrossIter > 0.5:
-        Refcenap,Refcumap,Reffnzap,Reflnzap = Lf(appa,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,M_bins)
+        Refcenap,Refcumap,Reffnzap,Reflnzap = Lf(1,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,app_M_bins)
     del c_mx,z_mx,mapp,mabs,Refcenap;gc.collect()
     
     for iTe in range(Iter):        
@@ -354,7 +353,7 @@ def LFmain(y):
         del sc;gc.collect()
     
         if CrossIter > 0.5:
-            appa = ((-1)**(iTe))/2.0 + 0.5
+            appa = ((-1)**(iTe+1))/2.0 + 0.5
 
         if appa > 0.5:
             M_bins = app_M_bins
@@ -364,6 +363,7 @@ def LFmain(y):
             M_bins = abs_M_bins
 
         Tarcen,Tarcum,Tarfnz,Tarlnz = Lf(appa,gapp1,gabs1,z_ga1,c_ga1,frac,mag_lim,x_low,x_up,galf_Omm,M_bins)
+        #print ('Tarcum = '+str(Tarcum))
         del c_ga1,z_ga1,gapp1,gabs1;gc.collect()
 
         if appa > 0.5:
@@ -384,12 +384,12 @@ def LFmain(y):
         else:
             lnz = rlnz
 
-        print ('fnz,lnz,Tarfnz,Tarlnz,Reffnz,Reflnz,Abs_App,z_low,z_up')
-        print (fnz,lnz,Tarfnz,Tarlnz,rfnz,rlnz,appa,x_low,x_up)
+        print ('Ite,fnz,lnz,Tarfnz,Tarlnz,Reffnz,Reflnz,Abs_App,z_low,z_up')
+        print (iTe,fnz,lnz,Tarfnz,Tarlnz,rfnz,rlnz,appa,x_low,x_up)
         
         Tarceno = Tarcen[Tarfnz:Tarlnz];Tarcumo = Tarcum[Tarfnz:Tarlnz]
 
-        if np.max(np.abs((Tarcum[fnz:lnz] - recu[fnz:lnz])/(recu[fnz:lnz]))) < 0.017:
+        if np.max(np.abs((Tarcum[fnz:lnz] - recu[fnz:lnz])/(recu[fnz:lnz]))) < 0.001:
             break
 
         del Tarcum,Tarcen;gc.collect()

@@ -80,8 +80,8 @@ LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
 Cross_Iteration = 0
-Number_or_Fraction = 'Number'
-Object_Numbers = 2000
+Number_or_Fraction = 'F'
+Object_Numbers = 1000
 Fractions = 0.05
 
 Concatenate_Catalogues = 1
@@ -241,7 +241,7 @@ def Func0(Har):
 
 def Func1(Har,Plot_N_of_Z = 0):
     global NofZmain
-    if Fenli > 0.5 and Plot_N_of_Z > 0:
+    if Plot_N_of_Z > 0:
         for i in pool.map(NofZmain,Har):
             p = 0
     return 0
