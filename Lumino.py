@@ -249,7 +249,6 @@ def RanCho(n0,n1):
 def LFI010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,mag_lim,z_ga,c_ga,Omm):
     afhj = interp1d(Refcum,Refcen,fill_value="extrapolate")
     ntcen = afhj(Tarcum)
-    SHIF = ntcen - Tarcen
     maha = interp1d(Tarcen,ntcen,fill_value="extrapolate")
     if appa > 0.5:
         gapp2 = maha(gapp)
@@ -278,6 +277,7 @@ def LFmain(y):
     wTar = np.array(Conf['plot_old_galform'])[()]
     Iter = Conf['LF_Iteration_Numbers'][()]
     CrossIter = Conf['Cross_Iteration'][()]
+    Object_Numbers = Conf['LFN'][()]
     if qTar < 0.5:
         TAR0 = 'RusGal'
     else:
@@ -309,10 +309,22 @@ def LFmain(y):
         mabs = M_abs(mxxl_Omm,z_mx,c_mx,mapp)
         gabs = M_abs(galf_Omm,z_ga,c_ga,gapp)
 
-    lm0 = len(mabs)
-    lm = np.int(np.around(frac*lm0))
-    lg0 = len(gabs)
-    lg = np.int(np.around(frac*lg0))
+    if NorF > 0.5:
+        lm0 = len(mabs)
+        lm = np.int(np.around(frac*lm0))
+        lg0 = len(gabs)
+        lg = np.int(np.around(frac*lg0))
+    else:
+        lg0 = len(gabs)
+        if lg0 < 2*Object_Numbers:
+            lg = np.int(np.around(0.5*lg0))
+            frac = 0.5
+        else:
+            lg = Object_Numbers
+            frac = lg/lg0
+        lm0 = len(mabs)
+        lm = np.int(np.around(frac*lm0))
+
     qc = RanCho(lm,lm0)
     c_mx = c_mx[qc];z_mx = z_mx[qc];mapp = mapp[qc];mabs = mabs[qc]
     del qc;gc.collect()
@@ -352,7 +364,7 @@ def LFmain(y):
 
         Tarceno = Tarcen[Tarfnz:Tarlnz];Tarcumo = Tarcum[Tarfnz:Tarlnz]
 
-        if iTe > 0.5 and np.max(np.abs((Tarcum[fnz:lnz] - Refcum[fnz:lnz])/(Refcum[fnz:lnz]))) < 0.017:
+        if np.max(np.abs((Tarcum[fnz:lnz] - Refcum[fnz:lnz])/(Refcum[fnz:lnz]))) < 0.017:
             break
 
         del Tarcum,Tarcen;gc.collect()

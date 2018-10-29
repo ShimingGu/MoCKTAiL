@@ -32,11 +32,6 @@ Abs_Mag_max = -15.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
-#Mag_min = 9.5
-#Mag_max = 19.5
-#Mag_Sep = 0.5
-# The choice of the magnitude limit and the width of the each magnitude range
-
 Abs_App = 'Abs'
 # The choice of using apparent magnitude or the absolute magnitude
 
@@ -85,6 +80,8 @@ LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
 k_correction = 1
 Cross_Iteration = 1
+Number_or_Fraction = 'Number'
+Object_Numbers = 1000
 Fractions = 0.05
 
 Concatenate_Catalogues = 1
@@ -102,13 +99,6 @@ pool = multiprocessing.Pool(processes=cores)
 
 os.system('mkdir '+str(catalogue_cache_path.decode("utf-8")))
 os.system('mkdir '+str(picsave_path.decode("utf-8")))
-
-#Mags = np.arange(Mag_min,Mag_max,Mag_Sep)
-#Zs = np.arange(Z_min,Z_max,Z_Sep)
-#MS = np.array([Mag_Sep])
-#ZD = np.array([Z_Sep])
-#Mags = np.around(10000*Mags);Mags = Mags.astype('int');Mags = Mags/10000.0
-#Zs = np.around(10000*Zs);Zs = Zs.astype('int');Zs = Zs/10000.0
 
 ###################################################################
 ######################### I AM A LINE #############################
@@ -136,11 +126,11 @@ Fenli = Separation_Mode
 
 if Fenli == 'Redshift':
     Fenli = 0
-if Fenli == 'redshift':
+elif Fenli == 'redshift':
     Fenli = 0
-if Fenli == 'Magnitude':
+elif Fenli == 'Magnitude':
     Fenli = 1
-if Fenli == 'magnitude':
+elif Fenli == 'magnitude':
     Fenli = 1
 
 if Interpolate_LF == 1:
@@ -149,19 +139,32 @@ if Interpolate_LF == 1:
 
 if LF_Interpolation == '1-D Interpolation' or '1-D interpolation' or '1DI':
     LFI = 1
-if LF_Interpolation == '2-D Interpolation' or '2-D interpolation' or '2DI':
+elif LF_Interpolation == '2-D Interpolation' or '2-D interpolation' or '2DI':
     LFI = 2
-if LF_Interpolation == '1-D Semi-Interpolation' or '1-D semi-interpolation' or '1DSI':
+elif LF_Interpolation == '1-D Semi-Interpolation' or '1-D semi-interpolation' or '1DSI':
     LFI = 1.5
-if LF_Interpolation == '2-D Semi-Interpolation' or '2-D semi-interpolation' or '2DSI':
+elif LF_Interpolation == '2-D Semi-Interpolation' or '2-D semi-interpolation' or '2DSI':
     LFI = 2.5
-if LF_Interpolation == '1-D Regression' or '1-D Regression' or '1DR':
+elif LF_Interpolation == '1-D Regression' or '1-D Regression' or '1DR':
     LFI = 0
-if LF_Interpolation == '2-D Regression' or '2-D Regression' or '2DR':
+elif LF_Interpolation == '2-D Regression' or '2-D Regression' or '2DR':
     LFI = 0.5
 
 if Interpolate_LF == 1 and LF_iterations < 1:
     LF_iterations = 1
+
+if Number_or_Fraction == 'Number':
+    NorF = 0
+elif Number_or_Fraction == 'number':
+    NorF = 0
+elif Number_or_Fraction == 'N':
+    NorF = 0
+elif Number_or_Fraction == 'Fraction':
+    NorF = 1
+elif Number_or_Fraction == 'fraction':
+    NorF = 1
+elif Number_or_Fraction == 'F':
+    NorF = 1
 
 ###################################################################
 ######################### I AM A LINE #############################
@@ -220,6 +223,8 @@ Conf.attrs['picsave_path'] = np.void(picsave_path)
 Conf.attrs['catalogue_cache_path'] = np.void(catalogue_cache_path)
 Conf['plot_old_galform'] = PLOT_OLD_GALFORM
 Conf['FRAC'] = Fractions
+Conf['NorF'] = Object_Numbers
+Conf['LFN'] = LFN
 Conf.close()
 
 #sys.path.append(r'./src')
