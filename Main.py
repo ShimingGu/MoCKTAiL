@@ -74,7 +74,7 @@ Separation_Mode = 'Magnitude'
 Cumulative_N_OF_Z = 0
 
 Interpolate_LF = 1
-LF_iterations = 4
+LF_iterations = 2
 Plot_LF = 1
 LF_Interpolation = '1-D Interpolation'
 Mag_limit_for_LF = 19.5
@@ -82,7 +82,7 @@ k_correction = 1
 Cross_Iteration = 0
 Number_or_Fraction = 'F'
 Object_Numbers = 1000
-Fractions = 0.05
+Fractions = 1
 
 Concatenate_Catalogues = 1
 # Plot the Luminosity Functions only or apply the correction to a new catalogue

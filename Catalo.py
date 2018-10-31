@@ -102,7 +102,8 @@ def Conca_Pica(Sp,Cache,ZM,xl,xu):
         Cada0 = Qata0[str(Yaoshi)]
         for i in range(1,len(xl)):
             x_l = xl[i];x_u = xu[i]
-            Qata = h5py.File(Cache+ZM+'/'+'RusGal_'+str(xl[0])+'_'+str(xu[0])+'.h5','r')
+            print (x_l,x_u)
+            Qata = h5py.File(Cache+ZM+'/'+'RusGal_'+str(x_l)+'_'+str(x_u)+'.h5','r')
             Cada = Qata[str(Yaoshi)]
             Cada0 = np.concatenate((Cada0,Cada))
             del Cada;gc.collect()
