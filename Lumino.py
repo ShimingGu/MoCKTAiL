@@ -294,8 +294,8 @@ def LFmain(y):
     galf_Omm = 0.307
     mxxl_Omm = 0.25
     apM = np.linspace(9.5**2,19.5**2,1000);app_M_bins = np.sqrt(apM)
-    abs_M_bins = np.arange(-30,-5,0.01)
-    app_M_bins = np.arange(9.5,19.5,0.01)
+    abs_M_bins = np.arange(-30,-5,0.1)
+    app_M_bins = np.arange(9.5,19.5,0.1)
 
     if ZorM < 0.5:
         ZM = 'z_obs'
@@ -303,8 +303,13 @@ def LFmain(y):
         ZM = 'app_mag'
     else:
         ZM = 'abs_mag'
+    
+    ZAA = 'Altg'
+    #ZAA = 'RusGal'
+    #ZAA = 'GALFORM'
+
     z_mx,mabs,mapp,c_mx = LFread(Cache+ZM+'/'+'MXXL_'+str(x_low)+'_'+str(x_up)+'.h5')
-    z_ga,gabs,gapp,c_ga = LFread(Cache+ZM+'/'+'GALFORM_'+str(x_low)+'_'+str(x_up)+'.h5')
+    z_ga,gabs,gapp,c_ga = LFread(Cache+ZM+'/'+ZAA+'_'+str(x_low)+'_'+str(x_up)+'.h5')
 
     if k_corr > 0.5:
         mabs = M_abs(mxxl_Omm,z_mx,c_mx,mapp)
@@ -345,7 +350,10 @@ def LFmain(y):
     if CrossIter > 0.5:
         Refcenap,Refcumap,Reffnzap,Reflnzap = Lf(1,mapp,mabs,z_mx,c_mx,frac,mag_lim,x_low,x_up,mxxl_Omm,app_M_bins)
     del c_mx,z_mx,mapp,mabs,Refcenap;gc.collect()
-    
+   
+    if appa > 0.5:
+        Refcumap = Refcum; Reffnzap = Reffnz; Reflnzap = Reflnz
+     
     for iTe in range(Iter):        
         bc = RanCho(lg,lg0)
         sc = bc.copy()

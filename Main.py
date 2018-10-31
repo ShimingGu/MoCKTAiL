@@ -28,7 +28,7 @@ App_Mag_Sep = 0.5
 # The choice of the apparent magnitude limit and the width of the each apparent magnitude range
 
 Abs_Mag_min = -25.0
-Abs_Mag_max = -15.0
+Abs_Mag_max = -10.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
@@ -61,7 +61,7 @@ Automatic_Mode = 1
 Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
-Catalogue_Separation = 1
+Catalogue_Separation = 0
 # Separate the catalogues in order to make the code parallel
 # 0 = "REUSE", 1 = "REDO", 2 = "DELETE AND REDO"
 
@@ -255,7 +255,7 @@ def Func2(Har,ILF,Fl):
 
 
 #Func0(Zs)
-#Func2(Zs)
+##Func2(Zs)
 #Conca(Zs)
 
 if Automatic_Mode == 1:
@@ -264,8 +264,8 @@ if Automatic_Mode == 1:
     Conf['ZorM'] = 0
     Conf['Separation'] = Z_Sep
     Conf.close()
-    Func0(Zs)
-    Func2(Zs,Interpolate_LF,Fenli)
+    #Func0(Zs)
+    #Func2(Zs,Interpolate_LF,Fenli)
     Conca(Zs)
     Conf = h5py.File('Config.h5','r+')
     del Conf['ZorM'],Conf['Separation']
