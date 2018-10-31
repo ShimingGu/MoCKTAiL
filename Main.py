@@ -27,7 +27,7 @@ App_Mag_max = 19.5
 App_Mag_Sep = 0.5
 # The choice of the apparent magnitude limit and the width of the each apparent magnitude range
 
-Abs_Mag_min = -25.0
+Abs_Mag_min = -30.0
 Abs_Mag_max = -10.0
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
@@ -266,7 +266,7 @@ if Automatic_Mode == 1:
     Conf.close()
     #Func0(Zs)
     #Func2(Zs,Interpolate_LF,Fenli)
-    Conca(Zs)
+    #Conca(Zs)
     Conf = h5py.File('Config.h5','r+')
     del Conf['ZorM'],Conf['Separation']
     del Conf['Old_GALFORM'],Conf['plot_old_galform']
@@ -275,7 +275,7 @@ if Automatic_Mode == 1:
     Conf['Old_GALFORM'] = 0
     Conf['plot_old_galform'] = 1
     Conf.close()
-    Func0(Mags)
+    #Func0(Mags)
     Func1(Mags,Plot_N_of_Z = 1)
 
 t1 = datetime.datetime.now() - t0
