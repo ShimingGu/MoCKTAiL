@@ -226,6 +226,9 @@ def flf1(x,pa,pb,pc,pd,pe,pf):
     p = 0.0
     return pa + pb/(x-p) + pc/((x-p)**2) + pd/((x-p)**3) + pe/((x-p)**4) + pf/((x-p)**5)
 
+def flfc(x,pa,pb,pc,pd,pe,pf):
+    return pa*(x-pb) + pc*np.cos(pd*x) + pe*np.sin(pf*x)
+
 def flf2(x,pa,pb,pc,pd,pe,pf):
     p = 0.0
     return pa + pb/(x-p) + pc/((x-p)**2) + pd/((x-p)**3) + pe/((x-p)**4) + pf/((x-p)**5)
@@ -328,16 +331,22 @@ def Fitfunc(x,x0,m1,p1,m2,p2,m3,p3):
     pls = p1*x**(1) + p2*x**(2) + p3*x**(3)
     return bas+mns+pls
 
+def Fitfunk(x,b,a0,r,a1,k1,a2,k2,a3,a4):
+    bas = b + a0*(x-r);mns = 0; pls = 0
+    mns = a1*np.cos(k1*(x-r))+a3*np.cos(2*k1*(x-r))
+    pls = a2*np.sin(k2*(x-r))+a4*np.sin(2*k2*(x-r))
+    return bas+mns+pls
+
 def LFR010(Refcum,Refcen,Tarcum,Tarcen,appa,gapp,gabs,mag_lim,z_ga,c_ga,Omm):
     print ('REGRESSION')
-    asadal,nss = curve_fit(Fitfunc,Refcum,Refcen,bounds=(-1000,1000))
-    tangun = Fitfunc(Tarcum,*asadal)
-    kokrea,nss = curve_fit(Fitfunc,Tarcen,tangun,bounds=(-1000,1000))
+    asadal,nss = curve_fit(Fitfunk,Refcum,Refcen,bounds=(-1000,1000))
+    tangun = Fitfunk(Tarcum,*asadal)
+    kokrea,nss = curve_fit(Fitfunk,Tarcen,tangun,bounds=(-1000,1000))
     if appa > 0.5:
-        gapp3 = Fitfunc(gapp,*kokrea)
+        gapp3 = Fitfunk(gapp,*kokrea)
         gabs3 = M_abs(Omm,z_ga,c_ga,gapp3)
     else:
-        gabs3 = Fitfunc(gabs,*kokrea)
+        gabs3 = Fitfunk(gabs,*kokrea)
         gapp3 = M_app(gabs3,z_ga,c_ga,Omm)
     del gapp,gabs;gc.collect()
     for i in range(len(gapp3)):
