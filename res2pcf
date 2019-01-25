@@ -1,0 +1,1112 @@
+====
+Starting job 257827 at Sun  4 Nov 22:03:02 GMT 2018 for user ddsm49.
+Running on nodes: m[5172-5174,5182]
+====
+Cores = 32
+
+ Interpolating Luminosity Function, Forced to the Mode of Redshift Separation 
+
+z_obs 0
+Zs
+0.01 Finished
+0.02 Finished
+0.03 Finished
+0.04 Finished
+0.05 Finished
+0.06 Finished
+0.07 Finished
+0.08 Finished
+0.09 Finished
+0.1 Finished
+0.11 Finished
+0.12 Finished
+0.13 Finished
+0.14 Finished
+0.15 Finished
+0.16 Finished
+0.17 Finished
+0.18 Finished
+0.19 Finished
+0.2 Finished
+0.21 Finished
+0.22 Finished
+0.23 Finished
+0.24 Finished
+0.25 Finished
+0.26 Finished
+0.27 Finished
+0.28 Finished
+0.29 Finished
+0.3 Finished
+0.31 Finished
+0.32 Finished
+0.33 Finished
+0.34 Finished
+0.35 Finished
+0.36 Finished
+0.37 Finished
+0.38 Finished
+0.39 Finished
+0.4 Finished
+0.41 Finished
+0.42 Finished
+0.43 Finished
+0.44 Finished
+0.45 Finished
+0.46 Finished
+0.47 Finished
+0.48 Finished
+0.49 Finished
+0.5 Finished
+0.01 Finished
+0.02 Finished
+0.03 Finished
+0.04 Finished
+0.05 Finished
+0.06 Finished
+0.07 Finished
+0.08 Finished
+0.09 Finished
+0.1 Finished
+0.11 Finished
+0.12 Finished
+0.13 Finished
+0.14 Finished
+0.15 Finished
+0.16 Finished
+0.17 Finished
+0.18 Finished
+0.19 Finished
+0.2 Finished
+0.21 Finished
+0.22 Finished
+0.23 Finished
+0.24 Finished
+0.25 Finished
+0.26 Finished
+0.27 Finished
+0.28 Finished
+0.29 Finished
+0.3 Finished
+0.31 Finished
+0.32 Finished
+0.33 Finished
+0.34 Finished
+0.35 Finished
+0.36 Finished
+0.37 Finished
+0.38 Finished
+0.39 Finished
+0.4 Finished
+0.41 Finished
+0.42 Finished
+0.43 Finished
+0.44 Finished
+0.45 Finished
+0.46 Finished
+0.47 Finished
+0.48 Finished
+0.49 Finished
+0.5 Finished
+Total Time Cost = 0:15:18.981339 
+
+0.01
+0.28 0.29 0.01
+0.01
+0.43 0.44 0.01
+LFI = 1
+
+0.24
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.23 0.24 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 157 881 0 0.23 0.24 1
+(40.83092643390908, 'max_dif', 0.24)
+(40.639547069675615, 'avg_dif', 0.24)
+LFI = 1
+
+0.17
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.16 0.17 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 106 942 0 0.16 0.17 1
+(39.95947544254429, 'max_dif', 0.17)
+(39.70348478662264, 'avg_dif', 0.17)
+0.01
+0.18 0.19 0.01
+0.01
+0.32 0.33 0.01
+LFI = 1
+
+0.31
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.3 0.31 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 224 840 0 0.3 0.31 1
+(41.5754755788223, 'max_dif', 0.31)
+(41.29010508504454, 'avg_dif', 0.31)
+LFI = 1
+
+0.4
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.39 0.4 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 293 823 0 0.39 0.4 1
+(42.12550780174826, 'max_dif', 0.4)
+(41.820839624315525, 'avg_dif', 0.4)
+LFI = 1
+
+0.18
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.17 0.18 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 210 943 0 0.17 0.18 1
+(40.08504321981978, 'max_dif', 0.18)
+(39.842128701211266, 'avg_dif', 0.18)
+0.01
+0.12 0.13 0.01
+0.01
+0.46 0.47 0.01
+LFI = 1
+
+0.26
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.25 0.26 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 202 863 0 0.25 0.26 1
+(41.07952839981218, 'max_dif', 0.26)
+(40.86676767972612, 'avg_dif', 0.26)
+LFI = 1
+
+0.13
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.12 0.13 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 182 999 0 0.12 0.13 1
+(39.30199937915138, 'max_dif', 0.13)
+(38.463473994231485, 'avg_dif', 0.13)
+0.01
+0.06 0.07 0.01
+LFI = 1
+
+0.01
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 60 999 0 0.0 0.01 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 23 995 0 0.0 0.01 1
+(33.981671055727084, 'max_dif', 0.01)
+(-344.94914614347425, 'avg_dif', 0.01)
+LFI = 1
+
+0.33
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.32 0.33 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 205 824 0 0.32 0.33 1
+(41.728015343904694, 'max_dif', 0.33)
+(41.42650040052744, 'avg_dif', 0.33)
+LFI = 1
+
+0.42
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.41 0.42 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 384 844 0 0.41 0.42 1
+(42.20275173319977, 'max_dif', 0.42)
+(41.90531214092605, 'avg_dif', 0.42)
+LFI = 1
+
+0.16
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.15 0.16 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 207 969 0 0.15 0.16 1
+(39.79683966863874, 'max_dif', 0.16)
+(39.50394880843056, 'avg_dif', 0.16)
+0.01
+0.27 0.28 0.01
+LFI = 1
+
+0.02
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 7 999 0 0.01 0.02 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 3 999 0 0.01 0.02 1
+(35.099157558315596, 'max_dif', 0.02)
+(-7.087407420542646, 'avg_dif', 0.02)
+LFI = 1
+
+0.34
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.33 0.34 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 272 840 0 0.33 0.34 1
+(41.79253769038397, 'max_dif', 0.34)
+(41.487729148090025, 'avg_dif', 0.34)
+LFI = 1
+
+0.39
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.38 0.39 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 308 839 0 0.38 0.39 1
+(42.08166512213961, 'max_dif', 0.39)
+(41.77386680298586, 'avg_dif', 0.39)
+LFI = 1
+
+0.19
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.18 0.19 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 160 929 0 0.18 0.19 1
+(40.21366427955793, 'max_dif', 0.19)
+(39.98376658003514, 'avg_dif', 0.19)
+0.01
+0.17 0.18 0.01
+LFI = 1
+
+0.12
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.11 0.12 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 95 996 0 0.11 0.12 1
+(39.13752715022137, 'max_dif', 0.12)
+(38.427906768872056, 'avg_dif', 0.12)
+LFI = 1
+
+0.21
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.2 0.21 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 254 925 0 0.2 0.21 1
+(40.461794996586235, 'max_dif', 0.21)
+(40.255062785947686, 'avg_dif', 0.21)
+0.01
+0.19 0.2 0.01
+LFI = 1
+
+0.03
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 11 999 0 0.02 0.03 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 7 999 0 0.02 0.03 1
+(35.88058941212988, 'max_dif', 0.03)
+(30.049115898297387, 'avg_dif', 0.03)
+LFI = 1
+
+0.35
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.34 0.35 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 203 837 0 0.34 0.35 1
+(41.85040424510727, 'max_dif', 0.35)
+(41.542328384494574, 'avg_dif', 0.35)
+LFI = 1
+
+0.41
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.4 0.41 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 297 826 0 0.4 0.41 1
+(42.167477830384634, 'max_dif', 0.41)
+(41.86577389522824, 'avg_dif', 0.41)
+LFI = 1
+
+0.14
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.13 0.14 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 98 999 0 0.13 0.14 1
+(39.4772597147624, 'max_dif', 0.14)
+(38.86808579424689, 'avg_dif', 0.14)
+LFI = 1
+
+0.48
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.47 0.48 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 371 835 0 0.47 0.48 1
+(42.50867608799968, 'max_dif', 0.48)
+(42.143324072094565, 'avg_dif', 0.48)
+0.01
+0.01 0.02 0.01
+0.01
+0.41 0.42 0.01
+LFI = 1
+
+0.22
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.21 0.22 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 187 905 0 0.21 0.22 1
+(40.588017463307935, 'max_dif', 0.22)
+(40.389919823275534, 'avg_dif', 0.22)
+LFI = 1
+
+0.23
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.22 0.23 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 154 895 0 0.22 0.23 1
+(40.704151679688245, 'max_dif', 0.23)
+(40.51337466170238, 'avg_dif', 0.23)
+LFI = 1
+
+0.47
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.46 0.47 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 390 830 0 0.46 0.47 1
+(42.45145613809594, 'max_dif', 0.47)
+(42.11642317192635, 'avg_dif', 0.47)
+0.01
+0.29 0.3 0.01
+LFI = 1
+
+0.13
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.12 0.13 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 182 999 0 0.12 0.13 1
+(39.30199937915138, 'max_dif', 0.13)
+(38.463473994231485, 'avg_dif', 0.13)
+LFI = 1
+
+0.25
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.24 0.25 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 240 885 0 0.24 0.25 1
+(40.93650246895068, 'max_dif', 0.25)
+(40.736472180700645, 'avg_dif', 0.25)
+LFI = 1
+
+0.44
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.43 0.44 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 333 827 0 0.43 0.44 1
+(42.28371996407142, 'max_dif', 0.44)
+(41.9958469562606, 'avg_dif', 0.44)
+0.01
+0.11 0.12 0.01
+LFI = 1
+
+0.14
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.13 0.14 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 98 999 0 0.13 0.14 1
+(39.4772597147624, 'max_dif', 0.14)
+(38.86808579424689, 'avg_dif', 0.14)
+LFI = 1
+
+0.24
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.23 0.24 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 157 881 0 0.23 0.24 1
+(40.83092643390908, 'max_dif', 0.24)
+(40.639547069675615, 'avg_dif', 0.24)
+LFI = 1
+
+0.45
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.44 0.45 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 346 826 0 0.44 0.45 1
+(42.33016951067505, 'max_dif', 0.45)
+(42.03665214001528, 'avg_dif', 0.45)
+0.01
+0.24 0.25 0.01
+0.01
+0.36 0.37 0.01
+LFI = 1
+
+0.25
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.24 0.25 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 240 885 0 0.24 0.25 1
+(40.93650246895068, 'max_dif', 0.25)
+(40.736472180700645, 'avg_dif', 0.25)
+LFI = 1
+
+0.2
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.19 0.2 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 225 927 0 0.19 0.2 1
+(40.33957248002882, 'max_dif', 0.2)
+(40.12455561985646, 'avg_dif', 0.2)
+0.01
+0.13 0.14 0.01
+0.01
+0.45 0.46 0.01
+LFI = 1
+
+0.23
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.22 0.23 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 154 895 0 0.22 0.23 1
+(40.704151679688245, 'max_dif', 0.23)
+(40.51337466170238, 'avg_dif', 0.23)
+LFI = 1
+
+0.22
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.21 0.22 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 187 905 0 0.21 0.22 1
+(40.588017463307935, 'max_dif', 0.22)
+(40.389919823275534, 'avg_dif', 0.22)
+LFI = 1
+
+0.49
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.48 0.49 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 414 849 0 0.48 0.49 1
+(42.564659096888064, 'max_dif', 0.49)
+(42.167003817860554, 'avg_dif', 0.49)
+0.01
+0.21 0.22 0.01
+0.01
+0.44 0.45 0.01
+LFI = 1
+
+0.29
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.28 0.29 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 226 848 0 0.28 0.29 1
+(41.385765974753966, 'max_dif', 0.29)
+(41.127179830364334, 'avg_dif', 0.29)
+LFI = 1
+
+0.49
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.48 0.49 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 414 849 0 0.48 0.49 1
+(42.564659096888064, 'max_dif', 0.49)
+(42.167003817860554, 'avg_dif', 0.49)
+LFI = 1
+
+0.15
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.14 0.15 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 116 999 0 0.14 0.15 1
+(39.666446431881944, 'max_dif', 0.15)
+(39.340045424413766, 'avg_dif', 0.15)
+LFI = 1
+
+0.5
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.49 0.5 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 442 855 0 0.49 0.5 1
+(42.62541428322465, 'max_dif', 0.5)
+(42.18934669244872, 'avg_dif', 0.5)
+0.01
+0.2 0.21 0.01
+LFI = 1
+
+0.05
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.04 0.05 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 64 999 0 0.04 0.05 1
+(37.02205876689886, 'max_dif', 0.05)
+(33.207132687468714, 'avg_dif', 0.05)
+LFI = 1
+
+0.37
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.36 0.37 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 280 840 0 0.36 0.37 1
+(41.98158650688541, 'max_dif', 0.37)
+(41.6714294571189, 'avg_dif', 0.37)
+LFI = 1
+
+0.5
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.49 0.5 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 442 855 0 0.49 0.5 1
+(42.62541428322465, 'max_dif', 0.5)
+(42.18934669244872, 'avg_dif', 0.5)
+LFI = 1
+
+0.11
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.1 0.11 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 111 999 0 0.1 0.11 1
+(38.93386260428303, 'max_dif', 0.11)
+(38.224016525444185, 'avg_dif', 0.11)
+LFI = 1
+
+0.43
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.42 0.43 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 394 843 0 0.42 0.43 1
+(42.23807370763811, 'max_dif', 0.43)
+(41.94562926087278, 'avg_dif', 0.43)
+0.01
+0.07 0.08 0.01
+LFI = 1
+
+0.07
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.06 0.07 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 184 999 0 0.06 0.07 1
+(37.82534064860664, 'max_dif', 0.07)
+(31.934081654515786, 'avg_dif', 0.07)
+LFI = 1
+
+0.43
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.42 0.43 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 394 843 0 0.42 0.43 1
+(42.23807370763811, 'max_dif', 0.43)
+(41.94562926087278, 'avg_dif', 0.43)
+LFI = 1
+
+0.1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.09 0.1 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 147 999 0 0.09 0.1 1
+(38.67102789057944, 'max_dif', 0.1)
+(37.00346984015507, 'avg_dif', 0.1)
+LFI = 1
+
+0.42
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.41 0.42 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 384 844 0 0.41 0.42 1
+(42.20275173319977, 'max_dif', 0.42)
+(41.90531214092605, 'avg_dif', 0.42)
+0.01
+0.02 0.03 0.01
+LFI = 1
+
+0.11
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.1 0.11 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 111 999 0 0.1 0.11 1
+(38.93386260428303, 'max_dif', 0.11)
+(38.224016525444185, 'avg_dif', 0.11)
+LFI = 1
+
+0.09
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.08 0.09 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 192 999 0 0.08 0.09 1
+(38.409031127897315, 'max_dif', 0.09)
+(36.00863977892915, 'avg_dif', 0.09)
+LFI = 1
+
+0.41
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.4 0.41 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 297 826 0 0.4 0.41 1
+(42.167477830384634, 'max_dif', 0.41)
+(41.86577389522824, 'avg_dif', 0.41)
+0.01
+0.3 0.31 0.01
+LFI = 1
+
+0.09
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.08 0.09 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 192 999 0 0.08 0.09 1
+(38.409031127897315, 'max_dif', 0.09)
+(36.00863977892915, 'avg_dif', 0.09)
+LFI = 1
+
+0.48
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.47 0.48 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 371 835 0 0.47 0.48 1
+(42.50867608799968, 'max_dif', 0.48)
+(42.143324072094565, 'avg_dif', 0.48)
+LFI = 1
+
+0.12
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.11 0.12 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 95 996 0 0.11 0.12 1
+(39.13752715022137, 'max_dif', 0.12)
+(38.427906768872056, 'avg_dif', 0.12)
+LFI = 1
+
+0.46
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.45 0.46 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 362 824 0 0.45 0.46 1
+(42.39161802695832, 'max_dif', 0.46)
+(42.07696765871234, 'avg_dif', 0.46)
+0.01
+0.08 0.09 0.01
+LFI = 1
+
+0.04
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.03 0.04 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 61 999 0 0.03 0.04 1
+(36.54370869237891, 'max_dif', 0.04)
+(26.232755515754256, 'avg_dif', 0.04)
+LFI = 1
+
+0.36
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.35 0.36 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 264 833 0 0.35 0.36 1
+(41.923118550126674, 'max_dif', 0.36)
+(41.613697318777206, 'avg_dif', 0.36)
+LFI = 1
+
+0.44
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.43 0.44 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 333 827 0 0.43 0.44 1
+(42.28371996407142, 'max_dif', 0.44)
+(41.9958469562606, 'avg_dif', 0.44)
+LFI = 1
+
+0.08
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.07 0.08 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 49 999 0 0.07 0.08 1
+(38.143008480770774, 'max_dif', 0.08)
+(36.152290719864524, 'avg_dif', 0.08)
+LFI = 1
+
+0.4
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.39 0.4 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 293 823 0 0.39 0.4 1
+(42.12550780174826, 'max_dif', 0.4)
+(41.820839624315525, 'avg_dif', 0.4)
+0.01
+0.22 0.23 0.01
+LFI = 1
+
+0.06
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.05 0.06 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 123 999 0 0.05 0.06 1
+(37.4980150184596, 'max_dif', 0.06)
+(32.41302522497708, 'avg_dif', 0.06)
+LFI = 1
+
+0.38
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.37 0.38 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 275 822 0 0.37 0.38 1
+(42.0353810441094, 'max_dif', 0.38)
+(41.72724945578943, 'avg_dif', 0.38)
+LFI = 1
+
+0.07
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.06 0.07 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 184 999 0 0.06 0.07 1
+(37.82534064860664, 'max_dif', 0.07)
+(31.934081654515786, 'avg_dif', 0.07)
+LFI = 1
+
+0.39
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.38 0.39 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 308 839 0 0.38 0.39 1
+(42.08166512213961, 'max_dif', 0.39)
+(41.77386680298586, 'avg_dif', 0.39)
+0.01
+0.14 0.15 0.01
+0.01
+0.42 0.43 0.01
+LFI = 1
+
+0.3
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.29 0.3 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 192 838 0 0.29 0.3 1
+(41.50714002002012, 'max_dif', 0.3)
+(41.23159941263612, 'avg_dif', 0.3)
+LFI = 1
+
+0.45
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.44 0.45 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 346 826 0 0.44 0.45 1
+(42.33016951067505, 'max_dif', 0.45)
+(42.03665214001528, 'avg_dif', 0.45)
+LFI = 1
+
+0.06
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.05 0.06 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 123 999 0 0.05 0.06 1
+(37.4980150184596, 'max_dif', 0.06)
+(32.41302522497708, 'avg_dif', 0.06)
+LFI = 1
+
+0.38
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.37 0.38 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 275 822 0 0.37 0.38 1
+(42.0353810441094, 'max_dif', 0.38)
+(41.72724945578943, 'avg_dif', 0.38)
+0.01
+0.15 0.16 0.01
+LFI = 1
+
+0.08
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.07 0.08 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 49 999 0 0.07 0.08 1
+(38.143008480770774, 'max_dif', 0.08)
+(36.152290719864524, 'avg_dif', 0.08)
+LFI = 1
+
+0.47
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.46 0.47 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 390 830 0 0.46 0.47 1
+(42.45145613809594, 'max_dif', 0.47)
+(42.11642317192635, 'avg_dif', 0.47)
+LFI = 1
+
+0.05
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.04 0.05 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 64 999 0 0.04 0.05 1
+(37.02205876689886, 'max_dif', 0.05)
+(33.207132687468714, 'avg_dif', 0.05)
+LFI = 1
+
+0.37
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.36 0.37 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 280 840 0 0.36 0.37 1
+(41.98158650688541, 'max_dif', 0.37)
+(41.6714294571189, 'avg_dif', 0.37)
+0.01
+0.31 0.32 0.01
+0.01
+0.49 0.5 0.01
+LFI = 1
+
+0.32
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.31 0.32 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 242 839 0 0.31 0.32 1
+(41.65584357160499, 'max_dif', 0.32)
+(41.36069233200904, 'avg_dif', 0.32)
+LFI = 1
+
+0.46
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.45 0.46 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 362 824 0 0.45 0.46 1
+(42.39161802695832, 'max_dif', 0.46)
+(42.07696765871234, 'avg_dif', 0.46)
+LFI = 1
+
+0.04
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.03 0.04 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 61 999 0 0.03 0.04 1
+(36.54370869237891, 'max_dif', 0.04)
+(26.232755515754256, 'avg_dif', 0.04)
+LFI = 1
+
+0.36
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.35 0.36 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 264 833 0 0.35 0.36 1
+(41.923118550126674, 'max_dif', 0.36)
+(41.613697318777206, 'avg_dif', 0.36)
+0.01
+0.03 0.04 0.01
+0.01
+0.48 0.49 0.01
+LFI = 1
+
+0.27
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.26 0.27 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 264 864 0 0.26 0.27 1
+(41.19324913553002, 'max_dif', 0.27)
+(40.96649079013059, 'avg_dif', 0.27)
+LFI = 1
+
+0.03
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 11 999 0 0.02 0.03 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 7 999 0 0.02 0.03 1
+(35.88058941212988, 'max_dif', 0.03)
+(30.049115898297387, 'avg_dif', 0.03)
+LFI = 1
+
+0.35
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.34 0.35 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 203 837 0 0.34 0.35 1
+(41.85040424510727, 'max_dif', 0.35)
+(41.542328384494574, 'avg_dif', 0.35)
+0.01
+0.25 0.26 0.01
+0.01
+0.35 0.36 0.01
+LFI = 1
+
+0.28
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.27 0.28 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 231 853 0 0.27 0.28 1
+(41.29082684212316, 'max_dif', 0.28)
+(41.04807174616138, 'avg_dif', 0.28)
+LFI = 1
+
+0.02
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 7 999 0 0.01 0.02 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 3 999 0 0.01 0.02 1
+(35.099157558315596, 'max_dif', 0.02)
+(-7.087407420542646, 'avg_dif', 0.02)
+LFI = 1
+
+0.34
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.33 0.34 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 272 840 0 0.33 0.34 1
+(41.79253769038397, 'max_dif', 0.34)
+(41.487729148090025, 'avg_dif', 0.34)
+0.01
+0.16 0.17 0.01
+LFI = 1
+
+0.1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.09 0.1 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 147 999 0 0.09 0.1 1
+(38.67102789057944, 'max_dif', 0.1)
+(37.00346984015507, 'avg_dif', 0.1)
+LFI = 1
+
+0.01
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 60 999 0 0.0 0.01 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 23 995 0 0.0 0.01 1
+(33.981671055727084, 'max_dif', 0.01)
+(-344.94914614347425, 'avg_dif', 0.01)
+LFI = 1
+
+0.33
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.32 0.33 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 205 824 0 0.32 0.33 1
+(41.728015343904694, 'max_dif', 0.33)
+(41.42650040052744, 'avg_dif', 0.33)
+0.01
+0.0 0.01 0.01
+0.01
+0.34 0.35 0.01
+LFI = 1
+
+0.2
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.19 0.2 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 225 927 0 0.19 0.2 1
+(40.33957248002882, 'max_dif', 0.2)
+(40.12455561985646, 'avg_dif', 0.2)
+LFI = 1
+
+0.31
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.3 0.31 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 224 840 0 0.3 0.31 1
+(41.5754755788223, 'max_dif', 0.31)
+(41.29010508504454, 'avg_dif', 0.31)
+0.01
+0.1 0.11 0.01
+0.01
+0.33 0.34 0.01
+LFI = 1
+
+0.17
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.16 0.17 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 106 942 0 0.16 0.17 1
+(39.95947544254429, 'max_dif', 0.17)
+(39.70348478662264, 'avg_dif', 0.17)
+LFI = 1
+
+0.32
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.31 0.32 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 242 839 0 0.31 0.32 1
+(41.65584357160499, 'max_dif', 0.32)
+(41.36069233200904, 'avg_dif', 0.32)
+0.01
+0.23 0.24 0.01
+0.01
+0.39 0.4 0.01
+LFI = 1
+
+0.16
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.15 0.16 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 207 969 0 0.15 0.16 1
+(39.79683966863874, 'max_dif', 0.16)
+(39.50394880843056, 'avg_dif', 0.16)
+LFI = 1
+
+0.3
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.29 0.3 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 192 838 0 0.29 0.3 1
+(41.50714002002012, 'max_dif', 0.3)
+(41.23159941263612, 'avg_dif', 0.3)
+0.01
+0.09 0.1 0.01
+0.01
+0.37 0.38 0.01
+LFI = 1
+
+0.19
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.18 0.19 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 160 929 0 0.18 0.19 1
+(40.21366427955793, 'max_dif', 0.19)
+(39.98376658003514, 'avg_dif', 0.19)
+LFI = 1
+
+0.29
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.28 0.29 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 226 848 0 0.28 0.29 1
+(41.385765974753966, 'max_dif', 0.29)
+(41.127179830364334, 'avg_dif', 0.29)
+0.01
+0.05 0.06 0.01
+0.01
+0.47 0.48 0.01
+LFI = 1
+
+0.15
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.14 0.15 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 116 999 0 0.14 0.15 1
+(39.666446431881944, 'max_dif', 0.15)
+(39.340045424413766, 'avg_dif', 0.15)
+LFI = 1
+
+0.27
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.26 0.27 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 264 864 0 0.26 0.27 1
+(41.19324913553002, 'max_dif', 0.27)
+(40.96649079013059, 'avg_dif', 0.27)
+0.01
+0.04 0.05 0.01
+0.01
+0.4 0.41 0.01
+LFI = 1
+
+0.21
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.2 0.21 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 254 925 0 0.2 0.21 1
+(40.461794996586235, 'max_dif', 0.21)
+(40.255062785947686, 'avg_dif', 0.21)
+LFI = 1
+
+0.26
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.25 0.26 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 202 863 0 0.25 0.26 1
+(41.07952839981218, 'max_dif', 0.26)
+(40.86676767972612, 'avg_dif', 0.26)
+0.01
+0.26 0.27 0.01
+0.01
+0.38 0.39 0.01
+LFI = 1
+
+0.18
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.17 0.18 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 210 943 0 0.17 0.18 1
+(40.08504321981978, 'max_dif', 0.18)
+(39.842128701211266, 'avg_dif', 0.18)
+LFI = 1
+
+0.28
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+0 0 999 0 0.27 0.28 1
+Ite,Tarfnz,Tarlnz,Abs_App,z_low,z_up,Reg_Int
+1 231 853 0 0.27 0.28 1
+(41.29082684212316, 'max_dif', 0.28)
+(41.04807174616138, 'avg_dif', 0.28)

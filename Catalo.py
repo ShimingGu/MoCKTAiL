@@ -47,11 +47,13 @@ def Separa(y):
     Abs_App = np.array(Conf['Abs_App'])[()]
     qTar = np.array(Conf['Old_GALFORM'])[()]
     if qTar < 0.5:
-        TAR = 'RusGal'
+        TAR = 'QuoGal'
         GeT = 'Alt_GALFORM_path'
+        Lbl = ''
     else:
         TAR = 'GALFORM'
         GeT = 'GALFORM_path'
+        Lbl = ''
     MXp = Conf.attrs['MXXL_path'].tostring().decode("utf-8")
     GAp = Conf.attrs[str(GeT)].tostring().decode("utf-8") 
     Cache = Conf.attrs['catalogue_cache_path'].tostring().decode("utf-8") 
@@ -72,9 +74,9 @@ def Separa(y):
         if ZorM < 0.5:
             ZM = 'z_obs'
         elif Abs_App > 0.5:
-            ZM = 'app_mag'
+            ZM = ''+'app_mag'
         else:
-            ZM = 'abs_mag'
+            ZM = ''+'abs_mag'
 
         Cat = h5py.File(RO,'r')
         jud = np.array(Cat[str(ZM)])
@@ -93,7 +95,7 @@ def Separa(y):
 
 
 def Conca_Pica(Sp,Cache,ZM,xl,xu):
-    rusgal0 = str(Cache+ZM+'/'+'RusGal_'+str(xl[0])+'_'+str(xu[0])+'.h5')
+    rusgal0 = str(Cache+ZM+'/'+'AltGal_'+str(xl[0])+'_'+str(xu[0])+'.h5')
     altgal = str(Sp)
     Qata0 = h5py.File(rusgal0,'r')
     Nada = h5py.File(altgal,'w')
@@ -103,12 +105,13 @@ def Conca_Pica(Sp,Cache,ZM,xl,xu):
         for i in range(1,len(xl)):
             x_l = xl[i];x_u = xu[i]
             print (x_l,x_u)
-            Qata = h5py.File(Cache+ZM+'/'+'RusGal_'+str(x_l)+'_'+str(x_u)+'.h5','r')
+            Qata = h5py.File(Cache+ZM+'/'+'AltGal_'+str(x_l)+'_'+str(x_u)+'.h5','r')
             Cada = Qata[str(Yaoshi)]
             Cada0 = np.concatenate((Cada0,Cada))
             del Cada;gc.collect()
             Qata.close()
         Nada[str(Yaoshi)] = Cada0
+        del Cada0;gc.collect()
     for Ysh in Nada.keys():
         print (str(Ysh))
     Qata0.close()

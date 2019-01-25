@@ -15,11 +15,11 @@ t0 = datetime.datetime.now()
 # Default Parameter Settings
 #
 
-MXXL_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/MXXL.h5"
-GALFORM_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/GALF.h5"
-Alt_GALFORM_path = b"/gpfs/data/ddsm49/GALFORM/catalogues/Altg.h5"
-picsave_path = b"./pics/"
-catalogue_cache_path = b"/gpfs/data/ddsm49/GALFORM/Cache2/"
+MXXL_path = b"/cosma5/data/durham/ddsm49/GALFORM/catalogues/MXXL.h5"
+GALFORM_path = b"/cosma5/data/durham/ddsm49/GALFORM/catalogues/GALF.h5"
+Alt_GALFORM_path = b"/cosma5/data/durham/ddsm49/GALFORM/catalogues/Abs_Altg3.h5"
+picsave_path = b"./Problemapics/"
+catalogue_cache_path = b"/cosma5/data/durham/ddsm49/GALFORM/Cache5/"
 # PLEASE ADD THE PATH AFTER THE LETTER b
 
 App_Mag_min = 9.5
@@ -27,8 +27,8 @@ App_Mag_max = 19.5
 App_Mag_Sep = 0.5
 # The choice of the apparent magnitude limit and the width of the each apparent magnitude range
 
-Abs_Mag_min = -30.0
-Abs_Mag_max = -10.0
+Abs_Mag_min = -25.5
+Abs_Mag_max = -10.5
 Abs_Mag_Sep = 0.5
 # The choice of the absolute magnitude limit and the width of the each absolute magnitude range
 
@@ -36,7 +36,7 @@ Abs_App = 'Abs'
 # The choice of using apparent magnitude or the absolute magnitude
 
 Z_min = 0
-Z_max = 0.50
+Z_max = 0.5
 Z_Sep = 0.01
 # The choice of the redshift limit and the width of the each redshift range
 
@@ -61,7 +61,7 @@ Automatic_Mode = 1
 Use_Auld_GALFORM_Catalogue = 1
 ## Mainly a useless parameter, will be totally ignored in the auto-case
 
-Catalogue_Separation = 0
+Catalogue_Separation = 1
 # Separate the catalogues in order to make the code parallel
 # 0 = "REUSE", 1 = "REDO", 2 = "DELETE AND REDO"
 
@@ -76,7 +76,7 @@ Cumulative_N_OF_Z = 0
 Interpolate_LF = 1
 LF_iterations = 2
 Plot_LF = 1
-LF_Interpolation = '1-D Interpolation'
+LF_Interpolation = '1-D Regression'
 Mag_limit_for_LF = 19.5
 k_correction = 1
 Cross_Iteration = 0
@@ -95,10 +95,16 @@ PLOT_OLD_GALFORM = 1
 ###################################################################
 
 cores = multiprocessing.cpu_count()
+print ('Cores = '+str(cores))
 pool = multiprocessing.Pool(processes=cores)
 
 os.system('mkdir '+str(catalogue_cache_path.decode("utf-8")))
+os.system('mkdir '+str(catalogue_cache_path.decode("utf-8"))+'/abs_mag')
+os.system('mkdir '+str(catalogue_cache_path.decode("utf-8"))+'/app_mag')
+os.system('mkdir '+str(catalogue_cache_path.decode("utf-8"))+'/z_obs')
 os.system('mkdir '+str(picsave_path.decode("utf-8")))
+
+Bujin = 1
 
 ###################################################################
 ######################### I AM A LINE #############################
@@ -145,10 +151,12 @@ elif LF_Interpolation == '1-D Semi-Interpolation' or '1-D semi-interpolation' or
     LFI = 1.5
 elif LF_Interpolation == '2-D Semi-Interpolation' or '2-D semi-interpolation' or '2DSI':
     LFI = 2.5
-elif LF_Interpolation == '1-D Regression' or '1-D Regression' or '1DR':
+elif LF_Interpolation == '1-D Regression' or '1-D regression' or '1DR':
     LFI = 0
-elif LF_Interpolation == '2-D Regression' or '2-D Regression' or '2DR':
+elif LF_Interpolation == '2-D Regression' or '2-D regression' or '2DR':
     LFI = 0.5
+
+print (LFI)
 
 if Interpolate_LF == 1 and LF_iterations < 1:
     LF_iterations = 1
@@ -192,7 +200,7 @@ print (Gua,Fenli)
 
 if Catalogue_Separation > 0.5:
     if Catalogue_Separation > 1.5:
-        os.system('rm /gpfs/data/ddsm49/GALFORM/Cache2/'+Gua+'/*.h5')
+        os.system('rm /cosma5/data/durham/ddsm49/GALFORM/Cache4/'+Gua+'/*.h5')
 
 
 if Fenli > 0.5:
@@ -246,11 +254,19 @@ def Func1(Har,Plot_N_of_Z = 0):
             p = 0
     return 0
 
-def Func2(Har,ILF,Fl):
+def Func2(Har,ILF,Fl,Bujin,cpun):
     global LFmain
     if Fl < 0.5 and ILF > 0:
         for i in pool.map(LFmain,Har):
-            p = 0
+            print (i,'Finished')
+    if Bujin > 0.5:
+        Dly = len(Har)
+        NNN = np.int(Dly/cpun)
+        for i in range(NNN):
+            Inc = np.min(((i+1)*cpun,Dly))
+            Mful = Har[i*cpun:Inc]
+            for i in pool.map(LFmain,Mful):
+                print (i,'Finished')
     return 0
 
 
@@ -264,19 +280,25 @@ if Automatic_Mode == 1:
     Conf['ZorM'] = 0
     Conf['Separation'] = Z_Sep
     Conf.close()
-    #Func0(Zs)
-    #Func2(Zs,Interpolate_LF,Fenli)
+    Func0(Zs)
+    Func2(Zs,Interpolate_LF,Fenli,Bujin,np.int(0.8*cores))
     #Conca(Zs)
     Conf = h5py.File('Config.h5','r+')
     del Conf['ZorM'],Conf['Separation']
     del Conf['Old_GALFORM'],Conf['plot_old_galform']
     Conf['ZorM'] = 1
     Conf['Separation'] = Mag_Sep
-    Conf['Old_GALFORM'] = 0
+    Conf['Old_GALFORM'] = 1
     Conf['plot_old_galform'] = 1
     Conf.close()
     #Func0(Mags)
-    Func1(Mags,Plot_N_of_Z = 1)
+    Conf = h5py.File('Config.h5','r+')
+    del Conf['Old_GALFORM']
+    Conf['Old_GALFORM'] = 0
+    Conf.close()
+    #Func0(Mags)
+    #Func1(Mags,Plot_N_of_Z = 1)
 
 t1 = datetime.datetime.now() - t0
+os.system('rm Config.h5')
 print ('Total Time Cost = '+str(t1)+' \n')
